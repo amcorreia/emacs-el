@@ -10,3 +10,6 @@
 [submodule "site-lisp/historyf"]
 	path = site-lisp/historyf
 	url = git@github.com:k1LoW/emacs-historyf.git
+[submodule "site-lisp/magit"]
+	path = site-lisp/magit
+	url = git@github.com:magit/magit.git
