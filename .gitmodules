@@ -4,3 +4,9 @@
 [submodule "site-lisp/Pymacs"]
 	path = site-lisp/Pymacs
 	url = git@github.com:pinard/Pymacs.git
+[submodule "site-lisp/anything"]
+	path = site-lisp/anything
+	url = git@github.com:haxney/anything.git
+[submodule "site-lisp/historyf"]
+	path = site-lisp/historyf
+	url = git@github.com:k1LoW/emacs-historyf.git
