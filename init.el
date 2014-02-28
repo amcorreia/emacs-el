@@ -612,12 +612,26 @@ Outline: (prefix M-o)
 (setq gdb-use-separate-io-buffer  t)
 
 ;;}}}
+(eval-when-compile
+  (setq load-path (append '("~/.emacs.d/emacs-el/site-lisp/historyf/") load-path)))
+(setq load-path (append '("~/.emacs.d/emacs-el/site-lisp/historyf/") load-path))
+
+
+(eval-when-compile
+  (setq load-path (append '("~/.emacs.d/emacs-el/site-lisp/anything/") load-path)))
+(setq load-path (append '("~/.emacs.d/emacs-el/site-lisp/anything/") load-path))
 
 ;;{{{ --[ PHP-mode ]----------
+;(eval-when-compile
+;  (setq load-path (append '("~/.emacs.d/site-lisp/net/cvs-packages/bbdb")  load
+
+(eval-when-compile
+  (setq load-path (append '("~/.emacs.d/emacs-el/site-lisp/emacs-cake2/") load-path)))
+(setq load-path (append '("~/.emacs.d/emacs-el/site-lisp/emacs-cake2/") load-path))
 
 (setq auto-mode-alist (append '(("\\.php\\'" . php-mode))
 			      auto-mode-alist))
-(autoload 'php-mode          "~/devel/php-mode/php-mode.el")
+(autoload 'php-mode          "~/.emacs.d/php-mode/php-mode.el")
 (add-hook 'php-mode-hook
 	  '(lambda ()
 	     ;(predictive-mode)
@@ -629,6 +643,9 @@ Outline: (prefix M-o)
 
 (setq php-documentation-url "http://localhost/docs/php_en/")
 (setq php-documentation-url-local t)
+
+(require 'cake2)
+(global-cake2 t)
 
 ; php-mode
 
