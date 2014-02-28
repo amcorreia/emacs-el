@@ -1,0 +1,6 @@
+[submodule "site-lisp/emacs-cake2"]
+	path = site-lisp/emacs-cake2
+	url = git@github.com:k1LoW/emacs-cake2.git
+[submodule "site-lisp/Pymacs"]
+	path = site-lisp/Pymacs
+	url = git@github.com:pinard/Pymacs.git
