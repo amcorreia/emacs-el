@@ -634,20 +634,29 @@ Outline: (prefix M-o)
 (autoload 'php-mode          "~/.emacs.d/php-mode/php-mode.el")
 (add-hook 'php-mode-hook
 	  '(lambda ()
+             (setq php-documentation-url
+                   "http://gw/docs/programacao/php/php-5.4-PT/")
+             (setq php-documentation-url-local t)
 	     ;(predictive-mode)
 	     ;(require 'php-dict)
 	     ;(setq predictive-main-dict 'php-dict)
 	     ;(predictive-load-dict 'php-dict)
-	     (local-set-key [f5]  'tempo-complete-tag)
-	     (tempo-use-tag-list  'php-tempo-tags)))
+	     (define-key php-mode-map "\C-cact"  'tempo-complete-tag)
+	     (tempo-use-tag-list                 'php-tempo-tags)))
 
 (setq php-documentation-url "http://localhost/docs/php_en/")
 (setq php-documentation-url-local t)
 
 (require 'cake2)
 (global-cake2 t)
+(cake2-set-default-keymap)
+(add-hook 'cake2-hook  #'(lambda() (setq yas/mode-symbol 'cake2)))
 
 ; php-mode
+
+; yasnippet
+;(setq yas/root-directory "~/.emacs.d/snippets")
+;(yas/load-directory yas/root-directory)
 
 ;;; html
 (add-hook 'html-mode-hook
