@@ -25,3 +25,6 @@
 [submodule "site-lisp/php-mode"]
 	path = site-lisp/php-mode
 	url = git@github.com:ejmr/php-mode.git
+[submodule "site-lisp/auto-complete"]
+	path = site-lisp/auto-complete
+	url = git@github.com:auto-complete/auto-complete.git
