@@ -88,7 +88,10 @@
 (setq Info-default-directory-list   (append
 				     '("~/usr/info/" "~/usr/share/info/")
 				     Info-default-directory-list))
-(setq load-path (append '("~/.emacs.d/elisp/") load-path))
+(eval-when-compile
+  (setq load-path (append '("~/.emacs.d/emacs-el/elisp/") load-path)))
+(add-to-list 'load-path "~/.emacs.d/emacs-el/elisp/")
+;(setq load-path (append '("~/.emacs.d/elisp/") load-path))
 
 (setq-default indent-tabs-mode nil)  ; set spaces instead tab to indent
 
@@ -612,6 +615,33 @@ Outline: (prefix M-o)
 (setq gdb-use-separate-io-buffer  t)
 
 ;;}}}
+
+;;{{{ --[ PHP-mode ]----------
+(eval-when-compile
+  (setq load-path (append '("~/.emacs.d/emacs-el/site-lisp/php-mode/") load-path)))
+(setq load-path (append '("~/.emacs.d/emacs-el/site-lisp/php-mode/") load-path))
+(require 'php-mode)
+
+(setq auto-mode-alist (append '(("\\.php\\'" . php-mode))
+			      auto-mode-alist))
+;(autoload 'php-mode          "~/.emacs.d/php-mode/php-mode.el")
+(add-hook 'php-mode-hook
+	  '(lambda ()
+             (setq php-documentation-url
+                   "http://gw/docs/programacao/php/php-5.4-PT/")
+             (setq php-documentation-url-local t)
+	     (define-key php-mode-map "\C-cact"       'tempo-complete-tag)
+             (define-key php-mode-map (kbd "C-c C-y") 'yas/create-php-snippet)
+             
+	     (tempo-use-tag-list                 'php-tempo-tags)))
+
+
+(add-to-list 'auto-mode-alist '("\\.ctp\\'" . web-mode))
+
+(eval-when-compile
+  (setq load-path (append '("~/.emacs.d/emacs-el/site-lisp/emacs-cake2/") load-path)))
+(setq load-path (append '("~/.emacs.d/emacs-el/site-lisp/emacs-cake2/") load-path))
+
 (eval-when-compile
   (setq load-path (append '("~/.emacs.d/emacs-el/site-lisp/historyf/") load-path)))
 (setq load-path (append '("~/.emacs.d/emacs-el/site-lisp/historyf/") load-path))
@@ -621,31 +651,12 @@ Outline: (prefix M-o)
   (setq load-path (append '("~/.emacs.d/emacs-el/site-lisp/anything/") load-path)))
 (setq load-path (append '("~/.emacs.d/emacs-el/site-lisp/anything/") load-path))
 
-;;{{{ --[ PHP-mode ]----------
-;(eval-when-compile
-;  (setq load-path (append '("~/.emacs.d/site-lisp/net/cvs-packages/bbdb")  load
 
 (eval-when-compile
-  (setq load-path (append '("~/.emacs.d/emacs-el/site-lisp/emacs-cake2/") load-path)))
-(setq load-path (append '("~/.emacs.d/emacs-el/site-lisp/emacs-cake2/") load-path))
-
-(setq auto-mode-alist (append '(("\\.php\\'" . php-mode))
-			      auto-mode-alist))
-(autoload 'php-mode          "~/.emacs.d/php-mode/php-mode.el")
-(add-hook 'php-mode-hook
-	  '(lambda ()
-             (setq php-documentation-url
-                   "http://gw/docs/programacao/php/php-5.4-PT/")
-             (setq php-documentation-url-local t)
-	     ;(predictive-mode)
-	     ;(require 'php-dict)
-	     ;(setq predictive-main-dict 'php-dict)
-	     ;(predictive-load-dict 'php-dict)
-	     (define-key php-mode-map "\C-cact"  'tempo-complete-tag)
-	     (tempo-use-tag-list                 'php-tempo-tags)))
-
-(setq php-documentation-url "http://localhost/docs/php_en/")
-(setq php-documentation-url-local t)
+  (setq load-path (append '("~/.emacs.d/emacs-el/site-lisp/php-auto-yasnippets/") load-path)))
+(add-to-list 'load-path "~/.emacs.d/emacs-el/site-lisp/php-auto-yasnippets/")
+(require 'php-auto-yasnippets)
+(setq php-auto-yasnippet-php-program "~/.emacs.d/emacs-el/site-lisp/php-auto-yasnippets/Create-PHP-YASnippet.php")
 
 (require 'cake2)
 (global-cake2 t)
@@ -655,6 +666,8 @@ Outline: (prefix M-o)
 (add-hook 'cake2-hook
           #'(lambda()
               (setq yas/mode-symbol 'cake2)
+              (setq tab-width 4)
+              (setq indent-tabs-mode t)
               (setq cake-plural-rules
                     (append '(
                               ("^\\(.*\\)ao$" "\\1oes")
@@ -682,6 +695,17 @@ Outline: (prefix M-o)
 ; yasnippet
 ;(setq yas/root-directory "~/.emacs.d/snippets")
 ;(yas/load-directory yas/root-directory)
+
+(eval-when-compile
+  (setq load-path (append '("~/.emacs.d/emacs-el/site-lisp/yasnippet/") load-path)))
+(add-to-list 'load-path "~/.emacs.d/emacs-el/site-lisp/yasnippet/")
+(require 'yasnippet)
+(yas-global-mode 1)
+(setq yas-snippet-dirs
+      '("~/.emacs.d/emacs-el/snippets"
+        "~/.emacs.d/emacs-el/site-lisp/yasnippet/yasmate/snippets"
+        "~/.emacs.d/emacs-el/site-lisp/yasnippet/snippets"
+        ))
 
 ;;; html
 (add-hook 'html-mode-hook
