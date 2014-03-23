@@ -13,3 +13,15 @@
 [submodule "site-lisp/magit"]
 	path = site-lisp/magit
 	url = git@github.com:magit/magit.git
+[submodule "site-lisp/yasnippet"]
+	path = site-lisp/yasnippet
+	url = https://github.com/capitaomorte/yasnippet
+[submodule "site-lisp/web-mode"]
+	path = site-lisp/web-mode
+	url = git@github.com:fxbois/web-mode.git
+[submodule "site-lisp/php-auto-yasnippets"]
+	path = site-lisp/php-auto-yasnippets
+	url = git@github.com:ejmr/php-auto-yasnippets.git
+[submodule "site-lisp/php-mode"]
+	path = site-lisp/php-mode
+	url = git@github.com:ejmr/php-mode.git
