@@ -13,6 +13,9 @@
 [submodule "site-lisp/magit"]
 	path = site-lisp/magit
 	url = git@github.com:magit/magit.git
+[submodule "site-lisp/html5-el"]
+	path = site-lisp/html5-el
+	url = git@github.com:hober/html5-el.git
 [submodule "site-lisp/yasnippet"]
 	path = site-lisp/yasnippet
 	url = https://github.com/capitaomorte/yasnippet
