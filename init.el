@@ -1,8 +1,7 @@
 ;;; .emacs --- Init file
-;; Copyright (C) 2005-2007 Alessandro Madruga Correia
-;; Author: Alessandro Madruga Correia <mutley_sandro@yahoo.com.br>
+;; Copyright (C) 2005-2014 Alessandro Madruga Correia
+;; Author: Alessandro Madruga Correia <mutley.sandro@gmail.com>
 ;; Keywords: emacs, dotfile, config
-;; $Id: init.el 16 2011-04-21 22:32:22Z amcorreia $
 ;;
 ;;    ___ _ __ ___   __ _  ___ ___
 ;;   / _ \ '_ ` _ \ / _` |/ __/ __|
@@ -638,6 +637,22 @@ Outline: (prefix M-o)
 
 (add-to-list 'auto-mode-alist '("\\.ctp\\'" . web-mode))
 
+; yasnippet
+;(setq yas/root-directory "~/.emacs.d/snippets")
+;(yas/load-directory yas/root-directory)
+
+(eval-when-compile
+  (setq load-path (append '("~/.emacs.d/emacs-el/site-lisp/yasnippet/") load-path)))
+(setq load-path (append '("~/.emacs.d/emacs-el/site-lisp/yasnippet/") load-path))
+;(add-to-list 'load-path "~/.emacs.d/emacs-el/site-lisp/yasnippet/")
+(require 'yasnippet)
+(yas-global-mode 1)
+(setq yas-snippet-dirs
+      '("~/.emacs.d/emacs-el/snippets"
+        "~/.emacs.d/emacs-el/site-lisp/yasnippet/yasmate/snippets"
+        "~/.emacs.d/emacs-el/site-lisp/yasnippet/snippets"
+        ))
+
 (eval-when-compile
   (setq load-path (append '("~/.emacs.d/emacs-el/site-lisp/emacs-cake2/") load-path)))
 (setq load-path (append '("~/.emacs.d/emacs-el/site-lisp/emacs-cake2/") load-path))
@@ -661,7 +676,7 @@ Outline: (prefix M-o)
 (require 'cake2)
 (global-cake2 t)
 (cake2-set-default-keymap)
-;
+; 
 ; testar eval-after-load "cake2"
 (add-hook 'cake2-hook
           #'(lambda()
@@ -692,20 +707,11 @@ Outline: (prefix M-o)
 
 ; php-mode
 
-; yasnippet
-;(setq yas/root-directory "~/.emacs.d/snippets")
-;(yas/load-directory yas/root-directory)
-
 (eval-when-compile
-  (setq load-path (append '("~/.emacs.d/emacs-el/site-lisp/yasnippet/") load-path)))
-(add-to-list 'load-path "~/.emacs.d/emacs-el/site-lisp/yasnippet/")
-(require 'yasnippet)
-(yas-global-mode 1)
-(setq yas-snippet-dirs
-      '("~/.emacs.d/emacs-el/snippets"
-        "~/.emacs.d/emacs-el/site-lisp/yasnippet/yasmate/snippets"
-        "~/.emacs.d/emacs-el/site-lisp/yasnippet/snippets"
-        ))
+  (setq load-path (append '("~/.emacs.d/emacs-el/site-lisp/auto-complete/") load-path)))
+(setq load-path (append '("~/.emacs.d/emacs-el/site-lisp/auto-complete/") load-path))
+(require 'auto-complete-config)
+(ac-config-default)
 
 ;;; html
 (add-hook 'html-mode-hook
