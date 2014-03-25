@@ -1,0 +1,5 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: public $var
+# key: pvar
+# --
+public \$${1:variable} = '${2:value}';
