@@ -865,6 +865,13 @@ Outline: (prefix M-o)
 (global-set-key "\C-ck" 'mode-compile-kill)
 
 ;;}}}
+;; magit
+(add-to-list 'load-path "~/.emacs.d/emacs-el/site-lisp/git-modes")
+(add-to-list 'load-path "~/.emacs.d/emacs-el/site-lisp/magit")
+(eval-after-load 'info
+  '(progn (info-initialize)
+          (add-to-list 'Info-directory-list "~/.emacs.d/emacs-el/site-lisp/magit")))
+(require 'magit)
 
 
 
