@@ -57,9 +57,7 @@
   (setq font-lock-variable-name-face '((:foreground "yellow" :slant italic :weight light-ultra)))
 ;  (setq font-lock-string-face        '((:foreground "green"  :slant italic :weight ultra-light)))
   (setq x-pointer-shape x-pointer-top-left-arrow) ;; altera ponteiro o mouse
-  ;(set-default-font "-b&h-Luxi Mono-normal-normal-normal-*-14-*-*-*-m-0-iso10646-1")
-  ;(set-default-font "-Misc-Fixed-normal-normal-normal-*-14-*-*-*-c-*-iso10646-1")
-  (set-default-font "-misc-fixed-medium-r-normal--15-140-75-75-c-90-iso8859-1")
+  ;(set-default-font "-misc-fixed-medium-r-normal--15-140-75-75-c-90-iso8859-1")
   ; barra com os botoes salvar, novo arquivo etc...
   (tool-bar-mode        -1)
   (set-scroll-bar-mode  nil)
@@ -149,10 +147,25 @@
 (add-hook 'write-file-hooks           'time-stamp)     ; write ts
 
 ;;;     colors
+(if (< emacs-major-version 24)
+    (progn
+      (message "23")
+      (set-face-background 'modeline "skyblue")
+      (set-face-background 'menu     "skyblue")
+      (set-face-foreground 'modeline "black"))
+  (progn
+    (set-face-background 'mode-line "gray18")
+    (set-face-foreground 'mode-line "cyan")
+    ;(set-face-background 'mode-line "slate blue")
+    (set-face-background 'mode-line-inactive "dark slate gray")
+    ;(set-face-background 'minibuffer-prompt "dar slate gray")
+    (set-face-foreground 'minibuffer-prompt "light steel blue")
+    ;(set-face-background 'ac-candidate-face "gray28") 
+    ;(set-face-foreground 'ac-candidate-face "yellow green")
+;    (set-face-foreground 'mode-line "cyan")
+    (set-face-background 'menu     "slate blue")))
+    
 (set-face-foreground 'region   "red")
-(set-face-background 'modeline "skyblue")
-(set-face-foreground 'modeline "black")
-(set-face-background 'menu     "skyblue")
 (set-face-foreground 'menu     "black")
 
 ;; ---[ FUNCTIONS ]---
@@ -359,22 +372,6 @@
 ;;}}}
 ;;}}} [ by others ]
 
-
-;(setq load-path (append '("~/.emacs.d/lisp/predictive/predictive") load-path))
-;(add-to-list 'load-path "~/.emacs.d/lisp/predictive/")
-; dictionaries
-(add-to-list 'load-path "~/.emacs.d/lisp/predictive/dicts/")
-;(autoload 'predictive-mode "~/.emacs.d/lisp/predictive/predictive"
-;  "Turn on Predictive Completion Mode." t)
-(setq predictive-main-dict              'madruga
-      predictive-auto-learn             t
-      predictive-auto-add-to-dict       t
-      predictive-add-to-dict-ask        nil
-      predictive-use-auto-learn-cache   nil
-      predictive-completion-use-echo    t
-      predictive-which-dict             t)
-
-;(require 'predictive)
 
 ;;}}}
 ;;{{{ ---[ PACKAGES ]-----------------------------------------------------------
@@ -616,14 +613,23 @@ Outline: (prefix M-o)
 ;;}}}
 
 ;;{{{ --[ PHP-mode ]----------
+(defun php-lint ()
+  "Performs lint-check on the current buffer"
+  (interactive)
+  (shell-command (concat "/usr/bin/php -l " (buffer-file-name))))
+
+(defun php-exec ()
+  "Executes current buffer"
+  (interactive)
+  (shell-command (concat "/usr/bin/php " (buffer-file-name))))
+
 (eval-when-compile
   (setq load-path (append '("~/.emacs.d/emacs-el/site-lisp/php-mode/") load-path)))
 (setq load-path (append '("~/.emacs.d/emacs-el/site-lisp/php-mode/") load-path))
 (require 'php-mode)
 
-(setq auto-mode-alist (append '(("\\.php\\'" . php-mode))
-			      auto-mode-alist))
-;(autoload 'php-mode          "~/.emacs.d/php-mode/php-mode.el")
+(setq auto-mode-alist (append '(("\\.php\\'" . php-mode))  auto-mode-alist))
+
 (add-hook 'php-mode-hook
 	  '(lambda ()
              (setq php-documentation-url
@@ -633,29 +639,6 @@ Outline: (prefix M-o)
              (define-key php-mode-map (kbd "C-c C-y") 'yas/create-php-snippet)
              
 	     (tempo-use-tag-list                 'php-tempo-tags)))
-
-
-(add-to-list 'auto-mode-alist '("\\.ctp\\'" . web-mode))
-
-; yasnippet
-;(setq yas/root-directory "~/.emacs.d/snippets")
-;(yas/load-directory yas/root-directory)
-
-(eval-when-compile
-  (setq load-path (append '("~/.emacs.d/emacs-el/site-lisp/yasnippet/") load-path)))
-(setq load-path (append '("~/.emacs.d/emacs-el/site-lisp/yasnippet/") load-path))
-;(add-to-list 'load-path "~/.emacs.d/emacs-el/site-lisp/yasnippet/")
-(require 'yasnippet)
-(yas-global-mode 1)
-(setq yas-snippet-dirs
-      '("~/.emacs.d/emacs-el/snippets"
-        "~/.emacs.d/emacs-el/site-lisp/yasnippet/yasmate/snippets"
-        "~/.emacs.d/emacs-el/site-lisp/yasnippet/snippets"
-        ))
-
-(eval-when-compile
-  (setq load-path (append '("~/.emacs.d/emacs-el/site-lisp/emacs-cake2/") load-path)))
-(setq load-path (append '("~/.emacs.d/emacs-el/site-lisp/emacs-cake2/") load-path))
 
 (eval-when-compile
   (setq load-path (append '("~/.emacs.d/emacs-el/site-lisp/historyf/") load-path)))
@@ -668,10 +651,8 @@ Outline: (prefix M-o)
 
 
 (eval-when-compile
-  (setq load-path (append '("~/.emacs.d/emacs-el/site-lisp/php-auto-yasnippets/") load-path)))
-(add-to-list 'load-path "~/.emacs.d/emacs-el/site-lisp/php-auto-yasnippets/")
-(require 'php-auto-yasnippets)
-(setq php-auto-yasnippet-php-program "~/.emacs.d/emacs-el/site-lisp/php-auto-yasnippets/Create-PHP-YASnippet.php")
+  (setq load-path (append '("~/.emacs.d/emacs-el/site-lisp/emacs-cake2/") load-path)))
+(setq load-path (append '("~/.emacs.d/emacs-el/site-lisp/emacs-cake2/") load-path))
 
 (require 'cake2)
 (global-cake2 t)
@@ -681,8 +662,9 @@ Outline: (prefix M-o)
 (add-hook 'cake2-hook
           #'(lambda()
               (setq yas/mode-symbol 'cake2)
-              (setq tab-width 4)
-              (setq indent-tabs-mode t)
+              ;(yas-activate-extra-mode 'cake2)
+              (add-to-list 'yas--extra-modes 'cake2)
+              (yas-activate-extra-mode 'cake2)
               (setq cake-plural-rules
                     (append '(
                               ("^\\(.*\\)ao$" "\\1oes")
@@ -705,13 +687,66 @@ Outline: (prefix M-o)
                                 ))
                            ))
 
-; php-mode
+
+
+(eval-when-compile
+  (setq load-path (append '("~/.emacs.d/emacs-el/site-lisp/yasnippet/") load-path)))
+(setq load-path (append '("~/.emacs.d/emacs-el/site-lisp/yasnippet/") load-path))
+;(add-to-list 'load-path "~/.emacs.d/emacs-el/site-lisp/yasnippet/")
+(require 'yasnippet)
+
+(setq yas-snippet-dirs
+      '("~/.emacs.d/emacs-el/snippets"
+        "~/.emacs.d/emacs-el/site-lisp/emacs-cake2/snippets/"
+        "~/.emacs.d/emacs-el/site-lisp/yasnippet/yasmate/snippets"
+        "~/.emacs.d/emacs-el/site-lisp/yasnippet/snippets"
+        ))
+(yas-global-mode 1)
+
+(define-key yas-minor-mode-map (kbd "<tab>") nil)
+(define-key yas-minor-mode-map (kbd "TAB") nil)
+(define-key yas-minor-mode-map (kbd "C-<tab>") 'yas-expand)
+
+
+
+
+(eval-when-compile
+  (setq load-path (append '("~/.emacs.d/emacs-el/site-lisp/php-auto-yasnippets/") load-path)))
+(add-to-list 'load-path "~/.emacs.d/emacs-el/site-lisp/php-auto-yasnippets/")
+
+(require 'php-auto-yasnippets)
+(setq php-auto-yasnippet-php-program "~/.emacs.d/emacs-el/site-lisp/php-auto-yasnippets/Create-PHP-YASnippet.php")
+
+(eval-when-compile
+  (setq load-path (append '("~/.emacs.d/emacs-el/site-lisp/auto-complete/lib/popup") load-path)))
+(setq load-path (append '("~/.emacs.d/emacs-el/site-lisp/auto-complete/lib/popup") load-path))
+(require 'popup)
 
 (eval-when-compile
   (setq load-path (append '("~/.emacs.d/emacs-el/site-lisp/auto-complete/") load-path)))
 (setq load-path (append '("~/.emacs.d/emacs-el/site-lisp/auto-complete/") load-path))
+
 (require 'auto-complete-config)
 (ac-config-default)
+
+
+;(define-key ac-mode-map (kbd "<tab>") 'auto-complete)
+;(ac-set-trigger-key "TAB")
+
+;; dirty fix for having AC everywhere
+;(define-globalized-minor-mode real-global-auto-complete-mode
+;  auto-complete-mode (lambda ()
+;                       (if (not (minibufferp (current-buffer)))
+;                           (auto-complete-mode 1))
+;                       ))
+;(real-global-auto-complete-mode t)
+
+(eval-when-compile
+  (setq load-path (append '("~/.emacs.d/emacs-el/site-lisp/web-mode/") load-path)))
+(setq load-path (append '("~/.emacs.d/emacs-el/site-lisp/web-mode/") load-path))
+(require 'web-mode)
+(setq web-mode-enable-auto-pairing t)
+(add-to-list 'auto-mode-alist '("\\.ctp\\'" . web-mode))
 
 ;;; html
 (add-hook 'html-mode-hook
@@ -1306,8 +1341,6 @@ the city quarter as well as the city.
 				 (tramp-parse-sconfig "~/.ssh/config")))
 
 
-(setq gnus-select-method  '(nnimap "mail.domain.com.br"
-				   (nnimap-authinfo-file "~/.gnus_senha")))
 
 (sit-for 2)
 (message "done!")
