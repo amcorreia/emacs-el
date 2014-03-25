@@ -1,3 +1,7 @@
 #name : $this->Form->create(...)
 # --
-\$this->Form->create('${1:Model}', array('action' => '${2:add}'));
+\$this->Form->create('`cake2-singular-name`', 
+ array('action' => '${1:add}',
+ 'label' => 'false',
+ 'div' =>'form-group',
+ 'class' => 'form-control'));
