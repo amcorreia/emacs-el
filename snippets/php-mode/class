@@ -1,0 +1,13 @@
+#name : class { ... }
+# --
+/**
+ * 
+ *
+ * @params
+ * @return
+ */
+class ${class_name} {
+    public function __construct() {
+        $0
+    }
+}
