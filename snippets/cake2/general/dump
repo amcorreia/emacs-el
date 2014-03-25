@@ -1,0 +1,3 @@
+#name : Debugger::dump(...);
+# --
+Debugger::dump(\$$0);

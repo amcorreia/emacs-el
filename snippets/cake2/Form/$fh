@@ -1,0 +1,3 @@
+#name : $this->Form->hidden(__('id'));
+# --
+\$this->Form->hidden(__('${1:id}'));
