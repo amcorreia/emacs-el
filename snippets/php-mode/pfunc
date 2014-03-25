@@ -1,6 +1,6 @@
-#name : private function (...) { ... }
+#name : public function (...) { ... }
 # --
-private function ${1:function_name}(\$${2:arg1}) {
+public function ${1:function_name}(\$${2:arg1}) {
     $0
 }
 
