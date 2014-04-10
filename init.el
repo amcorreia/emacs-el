@@ -43,7 +43,7 @@
 (load-file "~/.emacs.d/emacs-el/site-lisp/cedet/cedet-devel-load.el")
 ;; dummy term don't fontify correct comment
 (unless (eq window-system 'x) ; tty
-  (setq font-lock-comment-face '((:foreground "red" :slant normal :weight extra-light))))
+  (defvar font-lock-comment-face '((:foreground "red" :slant normal :weight extra-light))))
 
 ; if X then
 (when window-system
@@ -53,10 +53,10 @@
   (set-background-color "black")
   (set-cursor-color "cyan")
   (set-mouse-color "black")
-  ;(setq font-lock-comment-face       '((:foreground "red"    :slant italic :weight ultra-light)))
-  (setq font-lock-variable-name-face '((:foreground "yellow" :slant italic :weight light-ultra)))
-;  (setq font-lock-string-face        '((:foreground "green"  :slant italic :weight ultra-light)))
-  (setq x-pointer-shape x-pointer-top-left-arrow) ;; altera ponteiro o mouse
+  ;(defvar font-lock-comment-face       '((:foreground "red"    :slant italic :weight ultra-light)))
+  (defvar font-lock-variable-name-face '((:foreground "yellow" :slant italic :weight light-ultra)))
+;  (defvar font-lock-string-face        '((:foreground "green"  :slant italic :weight ultra-light)))
+  (defvar x-pointer-shape x-pointer-top-left-arrow) ;; altera ponteiro o mouse
   ;(set-default-font "-misc-fixed-medium-r-normal--15-140-75-75-c-90-iso8859-1")
   ; barra com os botoes salvar, novo arquivo etc...
   (tool-bar-mode        -1)
@@ -65,28 +65,28 @@
 
 ;; ---[ globals ]---
 
-(setq inhibit-startup-message       t)   ; don't show statup message
-(setq kill-read-only-ok             t)   ; show message when try kill read-only text
-(setq font-lock-maximum-decoration  t)   ; maximum possible fontification.
-(setq scroll-step                   1)   ; don't make pager
-(setq scroll-conservatively         5)
-(setq column-number-mode            t)
-(setq line-number-mode              t)
-(setq display-time-day-and-date     t)
+(defvar inhibit-startup-message       t)   ; don't show statup message
+(defvar kill-read-only-ok             t)   ; show message when try kill read-only text
+(defvar font-lock-maximum-decoration  t)   ; maximum possible fontification.
+(setq   scroll-step                   1)   ; don't make pager
+(defvar scroll-conservatively         5)
+(defvar column-number-mode            t)
+(defvar line-number-mode              t)
+(defvar display-time-day-and-date     t)
 (defvar display-time-24hr-format    t)
 (defvar battery-mode-line-format    " [%b%p%%,%d°C]")
-(setq visible-bell                  t) ; no X esse barulho eh chato.
-(setq user-full-name                "Alessandro Madruga Correia")
-(setq user-mail-address             "amcorreia@domain.com.br")
-(setq user-login-name               "madruga")
+(defvar visible-bell                  t) ; no X esse barulho eh chato.
+(defvar user-full-name                "Alessandro Madruga Correia")
+(defvar user-mail-address             "amcorreia@domain.com.br")
+(defvar user-login-name               "madruga")
 (defvar bookmark-default-file       "~/.emacs.d/tmp/emacs.bmk") ; bookmarks file
 (defvar backup-by-copying           t)
-(setq backup-directory-alist        '(("." . "~/.emacs.d/tmp/backups")))
-(setq Info-default-directory-list   (append
+(defvar backup-directory-alist        '(("." . "~/.emacs.d/tmp/backups")))
+(defvar Info-default-directory-list   (append
 				     '("~/usr/info/" "~/usr/share/info/")
 				     Info-default-directory-list))
 (eval-when-compile
-  (setq load-path (append '("~/.emacs.d/emacs-el/elisp/") load-path)))
+  (defvar load-path (append '("~/.emacs.d/emacs-el/elisp/") load-path)))
 (add-to-list 'load-path "~/.emacs.d/emacs-el/elisp/")
 
 (eval-when-compile
@@ -272,7 +272,7 @@
 ;;{{{ --[ ASCII-table ]----
 
 ;;;; copied from http://www.emacswiki.org/cgi-bin/emacs-en/AsciiTable
-(defun ascii-table ()
+(defun my-ascii-table ()
   "Display basic ASCII table (0 thru 128)."
   (interactive)
   (switch-to-buffer "*ASCII*")
@@ -391,7 +391,7 @@
 ;(add-hook 'c-initialization-hook                'my-c-mode-hook)
 (add-hook 'c-mode-hook            'my-c-mode-hook)
 (defconst my-c-style
-  ;;(setq c-comment-only-line-offset  4)
+  ;;(defvar c-comment-only-line-offset  4)
   '((c-tab-always-indent        . t)
     (c-comment-only-line-offset . 4)
     (c-hanging-braces-alist     . ((substatement-open after)
@@ -452,9 +452,9 @@
 (c-add-style "my-obsd"  my-c-style-obsd)
 
 (defun my-c-mode-common-hook ()
-  (setq c-basic-offset                   4)
-  (setq c-echo-syntactic-information-p   t)
-  ;(setq c-report-syntactic-errors        t)
+  (defvar c-basic-offset                   4)
+  (defvar c-echo-syntactic-information-p   t)
+  ;(defvar c-report-syntactic-errors        t)
   (c-toggle-auto-newline                 t)
   (c-toggle-electric-state               t))
 
@@ -463,7 +463,7 @@
   (autoload 'libc-mode "libc-mode" "GNU C Library Info Explorer." t)
 
   (my-c-mode-common-hook)
-  (setq c-default-style '((java-mode . "java")
+  (defvar c-default-style '((java-mode . "java")
                           (awk-mode  . "awk")
                           (other     . "bsd")))
   (c-set-style "my-obsd")
@@ -521,7 +521,7 @@ Outline: (prefix M-o)
 ;;; cperl-mode is preferred to perl-mode
 ;;; "Brevity is the soul of wit" <foo at acm.org>
 (defalias 'perl-mode 'cperl-mode)
-(setq cperl-hairy t) ;; Turns on most of the CPerlMode options
+(defvar cperl-hairy t) ;; Turns on most of the CPerlMode options
 
 (autoload 'sepia-init "~/.emacs.d/site-lisp/net/cvs-packages/sepia")
 ;(add-hook 'cperl-mode-hook
@@ -565,7 +565,7 @@ Outline: (prefix M-o)
 
 (defmacro join (join-char &rest others) `(mapconcat 'identity ',others ,join-char))
 
-(setq my-cperl-outline-regexp
+(defvar my-cperl-outline-regexp
       (concat
        "^"                              ; Start of line
        "[ \\t]*"                        ; Skip leading whitespace
@@ -581,7 +581,7 @@ Outline: (prefix M-o)
        ))
 
 
-(setq cperl-mode-hook 'my-cperl-customizations)
+(defvar cperl-mode-hook 'my-cperl-customizations)
 
 (defun my-cperl-customizations ()
   "cperl-mode customizations that must be done after cperl-mode loads"
@@ -604,18 +604,18 @@ Outline: (prefix M-o)
        (t 7)
        )))
 
-  (setq cperl-outline-regexp  my-cperl-outline-regexp)
-  (setq outline-regexp        cperl-outline-regexp)
-  (setq outline-level        'cperl-outline-level)
+  (defvar cperl-outline-regexp  my-cperl-outline-regexp)
+  (defvar outline-regexp        cperl-outline-regexp)
+  (defvar outline-level        'cperl-outline-level)
 )
 ;; perm-mode
 
 
 ;;{{{ --[ GDB ]---------------
 
-(setq gdb-many-windows            t)
-(setq gdb-show-main               t)
-(setq gdb-use-separate-io-buffer  t)
+(defvar gdb-many-windows            t)
+(defvar gdb-show-main               t)
+(defvar gdb-use-separate-io-buffer  t)
 
 ;;}}}
 
@@ -630,38 +630,20 @@ Outline: (prefix M-o)
   (interactive)
   (shell-command (concat "/usr/bin/php " (buffer-file-name))))
 
-;(eval-when-compile
-;  (setq load-path (append '("~/.emacs.d/emacs-el/site-lisp/php-mode/") load-path)))
-;(setq load-path (append '("~/.emacs.d/emacs-el/site-lisp/php-mode/") load-path))
 (require 'php-mode)
-
-(setq auto-mode-alist (append '(("\\.php\\'" . php-mode))  auto-mode-alist))
+(defvar auto-mode-alist (append '(("\\.php\\'" . php-mode))  auto-mode-alist))
 
 (add-hook 'php-mode-hook
 	  '(lambda ()
-             (setq php-documentation-url
+             (defvar php-documentation-url
                    "http://gw/docs/programacao/php/php-5.4-PT/")
-             (setq php-manual-url
+             (defvar php-manual-url
                    "http://gw/docs/programacao/php/php-5.4-PT/")
-             (setq php-documentation-url-local t)
+             (defvar php-documentation-url-local t)
 	     (define-key php-mode-map "\C-cact"       'tempo-complete-tag)
              (define-key php-mode-map (kbd "C-c C-y") 'yas/create-php-snippet)
              
 	     (tempo-use-tag-list                 'php-tempo-tags)))
-
-(eval-when-compile
-  (setq load-path (append '("~/.emacs.d/emacs-el/site-lisp/historyf/") load-path)))
-(setq load-path (append '("~/.emacs.d/emacs-el/site-lisp/historyf/") load-path))
-
-
-(eval-when-compile
-  (setq load-path (append '("~/.emacs.d/emacs-el/site-lisp/anything/") load-path)))
-(setq load-path (append '("~/.emacs.d/emacs-el/site-lisp/anything/") load-path))
-
-
-(eval-when-compile
-  (setq load-path (append '("~/.emacs.d/emacs-el/site-lisp/emacs-cake2/") load-path)))
-(setq load-path (append '("~/.emacs.d/emacs-el/site-lisp/emacs-cake2/") load-path))
 
 (require 'cake2)
 (global-cake2 t)
@@ -670,11 +652,11 @@ Outline: (prefix M-o)
 ; testar eval-after-load "cake2"
 (add-hook 'cake2-hook
           #'(lambda()
-              (setq yas/mode-symbol 'cake2)
+              (defvar yas/mode-symbol 'cake2)
               ;(yas-activate-extra-mode 'cake2)
               (add-to-list 'yas--extra-modes 'cake2)
               (yas-activate-extra-mode 'cake2)
-              (setq cake-plural-rules
+              (defvar cake-plural-rules
                     (append '(
                               ("^\\(.*\\)ao$" "\\1oes")
                               ("^\\(.*\\)\\(r\\|s\\|z\\)$" "\\1\\2es")
@@ -684,7 +666,7 @@ Outline: (prefix M-o)
                               ("^\\(.*\\)$" "\\1s")
                               ) cake-plural-rules 
                                 ))
-              (setq cake-singular-rules
+              (defvar cake-singular-rules
                     (append '(
                               ("^\\(.*\\)\\(oes\\|aes\\|aos\\)$" "\\1ao")
                               ("^\\(.*\\)\\(a\\|e\\|o\\|u\\)is$" "\\1\\2l")
@@ -697,14 +679,9 @@ Outline: (prefix M-o)
                            ))
 
 
-
-(eval-when-compile
-  (setq load-path (append '("~/.emacs.d/emacs-el/site-lisp/yasnippet/") load-path)))
-(setq load-path (append '("~/.emacs.d/emacs-el/site-lisp/yasnippet/") load-path))
-;(add-to-list 'load-path "~/.emacs.d/emacs-el/site-lisp/yasnippet/")
 (require 'yasnippet)
 
-(setq yas-snippet-dirs
+(defvar yas-snippet-dirs
       '("~/.emacs.d/emacs-el/snippets"
         "~/.emacs.d/emacs-el/site-lisp/emacs-cake2/snippets/"
         "~/.emacs.d/emacs-el/site-lisp/yasnippet/yasmate/snippets"
@@ -716,25 +693,10 @@ Outline: (prefix M-o)
 (define-key yas-minor-mode-map (kbd "TAB") nil)
 (define-key yas-minor-mode-map (kbd "C-<tab>") 'yas-expand)
 
-
-
-
-(eval-when-compile
-  (setq load-path (append '("~/.emacs.d/emacs-el/site-lisp/php-auto-yasnippets/") load-path)))
-(add-to-list 'load-path "~/.emacs.d/emacs-el/site-lisp/php-auto-yasnippets/")
-
 (require 'php-auto-yasnippets)
-(setq php-auto-yasnippet-php-program "~/.emacs.d/emacs-el/site-lisp/php-auto-yasnippets/Create-PHP-YASnippet.php")
+(defvar php-auto-yasnippet-php-program "~/.emacs.d/emacs-el/site-lisp/php-auto-yasnippets/Create-PHP-YASnippet.php")
 
-(eval-when-compile
-  (setq load-path (append '("~/.emacs.d/emacs-el/site-lisp/auto-complete/lib/popup") load-path)))
-(setq load-path (append '("~/.emacs.d/emacs-el/site-lisp/auto-complete/lib/popup") load-path))
 (require 'popup)
-
-(eval-when-compile
-  (setq load-path (append '("~/.emacs.d/emacs-el/site-lisp/auto-complete/") load-path)))
-(setq load-path (append '("~/.emacs.d/emacs-el/site-lisp/auto-complete/") load-path))
-
 (require 'auto-complete-config)
 (ac-config-default)
 
@@ -750,29 +712,26 @@ Outline: (prefix M-o)
 ;                       ))
 ;(real-global-auto-complete-mode t)
 
-(eval-when-compile
-  (setq load-path (append '("~/.emacs.d/emacs-el/site-lisp/web-mode/") load-path)))
-(setq load-path (append '("~/.emacs.d/emacs-el/site-lisp/web-mode/") load-path))
 (require 'web-mode)
-(setq web-mode-enable-auto-pairing t)
+(defvar web-mode-enable-auto-pairing t)
 (add-to-list 'auto-mode-alist '("\\.ctp\\'" . web-mode))
 
 ;;; html
 (add-hook 'html-mode-hook
 	  (lambda ()
-	    ;(setq tab-stop-list '(4 8 12 16 20 24 28 32 36 40 44 48 52 56 60
+	    ;(defvar tab-stop-list '(4 8 12 16 20 24 28 32 36 40 44 48 52 56 60
 	    ;64 68 72 76 80 84 88 92 96 100 104 108 112
 	    ;116 120))
-	    (setq tab-stop-list (let ((stops '(8)))
+	    (defvar tab-stop-list (let ((stops '(8)))
 				  (while (< (car stops) 120)
-				    (setq stops (cons (+ 8 (car stops)) stops)))
+				    (defvar stops (cons (+ 8 (car stops)) stops)))
 				  (nreverse stops)))
-	    (setq indent-line-function 'indent-relative)))
+	    (defvar indent-line-function 'indent-relative)))
 
 ;; "funky stuff" ;; proceed with caution ;;
 (defvar my-key-pairs nil)
 
-(setq my-key-pairs '((?! ?1) (?@ ?2) (?# ?3) (?$ ?4) (?% ?5)
+(defvar my-key-pairs '((?! ?1) (?@ ?2) (?# ?3) (?$ ?4) (?% ?5)
                      (?^ ?6) (?& ?7) (?* ?8) (?( ?9) (?) ?0)
                      (?- ?_) (?\" ?') (?{ ?[) (?} ?]) ; (?| ?\\)
                      ))
@@ -875,13 +834,12 @@ Outline: (prefix M-o)
 
 ;;}}}
 ;; magit
-(add-to-list 'load-path "~/.emacs.d/emacs-el/site-lisp/git-modes")
+;(add-to-list 'load-path "~/.emacs.d/emacs-el/site-lisp/git-modes")
 ;(add-to-list 'load-path "~/.emacs.d/emacs-el/site-lisp/magit")
 (eval-after-load 'info
   '(progn (info-initialize)
           (add-to-list 'Info-directory-list "~/.emacs.d/emacs-el/site-lisp/magit")))
 (require 'magit)
-
 
 ;(require 'ecb)
 
@@ -909,8 +867,8 @@ Outline: (prefix M-o)
 
 ;;{{{ --[ calendar ]----------
 
-;(setq diary-file                      "~/.emacs.d/diario")
-(setq calendar-week-start-day         0)
+;(defvar diary-file                      "~/.emacs.d/diario")
+(defvar calendar-week-start-day         0)
 (defvar european-style-calendar         t)
 (defvar mark-diary-entries-in-calendar  t)
 (defvar mark-holidays-in-calendar       t)
@@ -918,11 +876,10 @@ Outline: (prefix M-o)
 (defvar calendar-latitude               -29.16) ; caxias do sul - RS
 (defvar calendar-longitude              -51.18) ; [ 1 1 west]
 (defvar calendar-location-name          "SAM|BR|BR019|CAXIAS DO SUL|")
-;(setq calendar-date-display-form 
 
 (defvar calendar-day-name-array
-  ["Domingo" "Segunda" "Terça" "Quarta" "Quinta" "Sexta" "Sábado"]
-  calendar-month-name-array
+  ["Domingo" "Segunda" "Terça" "Quarta" "Quinta" "Sexta" "Sábado"])
+(defvar calendar-month-name-array
   ["Janeiro"   "Fevereiro"  "Março"     "Abril"
    "Maio"      "Junho"      "Julho"     "Agosto"
    "Setembro"  "Outubro"    "Novembro"  "Dezembro"])
@@ -933,7 +890,7 @@ Outline: (prefix M-o)
 (defvar islamic-holidays nil)   ; get rid of religious holidays
 (defvar oriental-holidays nil)
 
-(setq local-holidays
+(defvar local-holidays
       '(
 	(holiday-fixed  1  1 "Ano Novo")
         (holiday-fixed  4 21 "Tiradentes")
@@ -954,7 +911,7 @@ Outline: (prefix M-o)
 	(holiday-float 5 0 2 "Dia das Maes")
 	(holiday-float 6 0 2 "Dia dos Pais")))
 
-(setq calendar-load-hook
+(defvar calendar-load-hook
       '(lambda()
          (european-calendar)
          (set-face-background 'diary-face           "black")
@@ -975,7 +932,7 @@ Outline: (prefix M-o)
 ;;}}} end calendar
 
 ;;{{{ --[ ispell ]------------
-;(setq ispell-program-name     "/home/amcorreia/bin/ispell")
+;(defvar ispell-program-name     "/home/amcorreia/bin/ispell")
 
 (defun my-turn-on-flyspell-english ()
   "Unconditionally turn on Flyspell mode (in English)."
@@ -987,10 +944,10 @@ Outline: (prefix M-o)
 (defun my-turn-on-flyspell-portuguese ()
   "Unconditionally turn on Flyspell mode (in Portuguese)."
   (interactive)
-  (setq ispell-dictionary       "brasileiro") 
-  (setq ispell-sort-corrections t)
+  (defvar ispell-dictionary       "brasileiro")
+  (defvar ispell-sort-corrections t)
   
-  (setq ispell-dictionary-alist
+  (defvar ispell-dictionary-alist
 	(cons '("brasileiro" "[A-ZÁÉÍÑÓÚÜa-záéíñóúü]" "[^A-ZÁÉÍÑÓÚÜa-záéíñóúü]" "[---]" nil
 		nil "~tex" iso-8859-1)  ispell-dictionary-alist))
   
@@ -1006,90 +963,6 @@ Outline: (prefix M-o)
 
 ;;}}}
 
-;;{{{ --[ BBDB ]--------------
-
-;(eval-when-compile
-;  (setq load-path (append '("~/.emacs.d/site-lisp/net/cvs-packages/bbdb")  load-path)))
-;  (setq load-path (append '("~/.emacs.d/site-lisp/net/cvs-packages/bbdb/bbdb-2.34/lisp") load-path)))
-
-;(setq load-path (append '("~/.emacs.d/site-lisp/net/cvs-packages/bbdb/bbdb-2.34/lisp") load-path))
-;(require 'bbdb)
-;(bbdb-initialize 'gnus 'message)
-
-;(setq bbdb-file "~/.emacs.d/config/bbdb/bbdb")
-;(setq bbdb-default-area-code 054)
-;(setq bbdb-user-mail-names (regexp-opt '("amcorreia@domain.com.br")))
-;(setq bbdb-north-american-phone-numbers-p nil)
-
-;(setq bbdb-display-layout 'multi-line) ; def nil
-
-;(setq bbdb-address-formatting-alist '(bbdb-address-is-continental my-format-address-brazil))
-;((bbdb-address-is-continental . bbdb-print-format-address-continental)
-; (nil . bbdb-print-format-address-default))
-
-(defun my-format-address-brazil (addr &optional indent)
-  "Insert formated Brazilian address ADDR in current buffer.
-
-This function is a possible formatting function for
-`bbdb-address-formatting-alist'.
-
-The result looks like this:
-       location: ...
-                 city
-                 zip, state.
-                 country
-
-Here is such an example.  Note that the city field contains
-the city quarter as well as the city.
-
-           home: ...
-		 Ipanema, Rio de Janeiro
-		 22411-010, RJ.
-		 Brasil"
-  (setq indent (or indent 14))
-  (let ((fmt (format " %%%ds: " indent))
-        (indent (+ 3 indent)))
-    (insert (format fmt (bbdb-address-location addr)))
-    (bbdb-format-streets addr indent)
-    (let* ((c (bbdb-address-city addr))
-	   (c-p (> (length c) 0))
-	   (s (bbdb-address-state addr))
-	   (s-p (> (length s) 0))
-	   (z (bbdb-address-zip addr))
-	   (z-p (> (length z) 0)))
-      (when c-p
-	(indent-to indent)
-	(insert c "\n"))
-      (when (or z-p s-p)
-	(indent-to indent)
-	(insert z)
-	(when (and s-p z-p) 
-	  (insert ", "))
-	(when s-p
-	  (insert s "."))
-	(insert "\n")))
-    (let ((country (bbdb-address-country addr)))
-      (when (> (length country) 0)
-	(indent-to indent)
-	(insert country "\n")))))
-
-(defun my-import-dot-mailrc-to-bbdb ()
-  "Imports the ~/.mailrc aliases into bbdb."
-  (interactive)
-  (with-temp-buffer
-    (insert-file-contents (expand-file-name "~/.mailrc"))
-    (goto-char (point-min)) ;; beginning-of-buffer (but faster)
-    (while
-    	(looking-at
-    	 (concat "alias\\s-+\\(\\sw+\\(-\\sw+\\)?\\)\\s-+\"?"
-    		 "\\([a-zA-Z0-9@. \t<>_-]*\\)\"?"))
-      (eval '(bbdb-create-internal
-    	      (buffer-substring (match-beginning 1) (match-end 1)) nil
-    	      (buffer-substring (match-beginning 3) (match-end 3)) nil nil nil) )
-      (forward-line))))
-
-;;}}}
-
 ;;}}} ---[ GNU-emacs ]
 ;;{{{ ----[ NON-GNU-emacs ]-----------------------------------------------------
 ;;{{{{ --[ smiley ]--------------
@@ -1097,28 +970,15 @@ the city quarter as well as the city.
 ;;   '(add-to-list 'smiley-regexp-alist	'("\\(\\[<o>]\\)" 1 "brasil")))
 ;; (require 'autosmiley "~/.emacs.d/site-lisp/misc/autosmiley")
 ;;}}}
-;;{{{ --[ folding ]-----------
 
-;; (eval-when-compile
-;;   (setq load-path (append '("~/.emacs.d/site-lisp/common" ) load-path)))
-
-;; (require 'folding "~/.emacs.d/site-lisp/common/folding")
-;; (global-set-key [(control c) (f) (h)] 'folding-hide-current-entry)
-;; (global-set-key [(control c) (f) (s)] 'folding-show-current-entry)
-;; (global-set-key [(control c) (f) (t)] 'folding-toggle-show-hide)
-;(find-library-name "folding")
-
-;;}}}
 ;;{{{ --[ w3m ]---------------
-
-
 (require 'w3m-load)
 (autoload 'w3m "w3m" "Navegador" t)
 (autoload 'w3m-session "w3m-session")
-(setq w3m-home-page    "http://www.google.com")
-(setq w3m-use-cookies t)
-(setq w3m-default-display-inline-images t)
-(setq w3m-session-file "~/.emacs.d/w3m-sessions")
+(defvar w3m-home-page    "http://www.google.com")
+(defvar w3m-use-cookies t)
+(defvar w3m-default-display-inline-images t)
+(defvar w3m-session-file "~/.emacs.d/w3m-sessions")
 
 ; (defun w3m-add-keys ()
 ;   (define-key w3m-mode-map "S" 'w3m-session-save)
@@ -1126,8 +986,8 @@ the city quarter as well as the city.
 ; (add-hook 'w3m-mode-hook 'w3m-add-keys)
 
 
-(setq w3m-session-duplicate-tabs 'ask)
-(setq browse-url-browser-function 'w3m-browse-url)
+(defvar w3m-session-duplicate-tabs 'ask)
+(defvar browse-url-browser-function 'w3m-browse-url)
 (global-set-key "\C-xm" 'browse-url-at-point)
 
 (eval-after-load "w3m-search"
@@ -1155,26 +1015,26 @@ the city quarter as well as the city.
 (cfw:open-ical-calendar my-ical-private-google)
 
 ;; Month
-(setq calendar-month-name-array
+(defvar calendar-month-name-array
   ["Janeiro" "Fevereiro" "Março"     "Abril"   "Maio"      "Junho"
    "Julho"    "Agosto"   "Setembro" "Outubro" "Novembro" "Dezembro"])
 
 ;; Week days
-(setq calendar-day-name-array
+(defvar calendar-day-name-array
       ["Domingo" "Segunda" "Terça" "Quarta" "Quinta" "Sexta" "Sábado"])
 
 ;; First day of the week
-(setq calendar-week-start-day 1) ; 0:Sunday, 1:Monday
+(defvar calendar-week-start-day 1) ; 0:Sunday, 1:Monday
 
  ;; Another unicode chars
-(setq cfw:fchar-junction ?╬
-      cfw:fchar-vertical-line ?║
-      cfw:fchar-horizontal-line ?═
-      cfw:fchar-left-junction ?╠
-      cfw:fchar-right-junction ?╣
-      cfw:fchar-top-junction ?╦
-      cfw:fchar-top-left-corner ?╔
-      cfw:fchar-top-right-corner ?╗)
+(defvar cfw:fchar-junction ?╬)
+(defvar cfw:fchar-vertical-line ?║)
+(defvar cfw:fchar-horizontal-line ?═)
+(defvar cfw:fchar-left-junction ?╠)
+(defvar cfw:fchar-right-junction ?╣)
+(defvar cfw:fchar-top-junction ?╦)
+(defvar cfw:fchar-top-left-corner ?╔)
+(defvar cfw:fchar-top-right-corner ?╗)
 ;; (defun my-open-calendar ()
 ;;   (interactive)
 ;;   (cfw:open-calendar-buffer
@@ -1191,41 +1051,10 @@ the city quarter as well as the city.
 (require 'mode-icons)
 (mode-icons-mode)
 
-;;{{{ --[ worklog ]-----------
-
-;; (eval-when-compile
-;;   (setq load-path (append '("~/.emacs.d/site-lisp/common") load-path)))
-;; (require 'worklog "~/.emacs.d/site-lisp/common/worklog")
-;; (setq worklog-file "~/.emacs.d/config/worklog/worklog")
-;; (setq worklog-reuse-summary-buffer t)
-
-;; (global-set-key "\C-cmwa" 'my-worklog-quick-start)
-;; (global-set-key "\C-cmwe" 'my-worklog-quick-stop)
-;; (global-set-key "\C-cmws" 'worklog-summarize-tasks)
-
-;; (defun my-worklog-quick-start (tarefa)
-;;   (interactive "sTarefa: ")
-;;   (let ((curbf (current-buffer)))
-;;     (find-file worklog-file)
-;;     (worklog-task-begin "login")
-;;     (worklog-task-begin tarefa)
-;;     (save-buffer)
-;;     (switch-to-buffer curbf t)))
-
-;; (defun my-worklog-quick-stop nil
-;;   (interactive)
-;;   (let ((bf (current-buffer)))
-;;     (save-excursion
-;;       (switch-to-buffer worklog-file)
-;;       (worklog-task-stop)
-;;       (save-buffer))
-;;     (switch-to-buffer bf t)))
-
-;;}}}
 ;(require 'screen-lines)
 ;(require 'moinmoin-mode)
 (require 'moomin)
-(setq moomin-wiki-url-base "http://wiki.zarathustra.com.br/MyWiki")
+(defvar moomin-wiki-url-base "http://wiki.zarathustra.com.br/MyWiki")
 
 ;;; ;; Assign keybind to 'helm-moomin and 'moomin-save-current-buffer as you like
 (global-set-key (kbd "C-x w") 'helm-moomin)
@@ -1235,25 +1064,22 @@ the city quarter as well as the city.
 
 ;; ;;; WIKI
 ;; (require 'oddmuse)
-;; (setq oddmuse-directory "~/.emacs.d/config/oddmuse")
+;; (defvar oddmuse-directory "~/.emacs.d/config/oddmuse")
 
-;; (setq oddmuse-wikis (append '(("Zarathustra"
+;; (defvar oddmuse-wikis (append '(("Zarathustra"
 ;;                                "http://wiki.zarathustra.com.br/MyWiki/FrontPage?action=edit&editor=text" utf-8)) oddmuse-wikis))
-;; (setq oddmuse-wikis  '("Zarathustra"
+;; (defvar oddmuse-wikis  '("Zarathustra"
 ;;                                "http://wiki.zarathustra.com.br/MyWiki/FrontPage" utf-8))
-;; (setq oddmuse-get "")
+;; (defvar oddmuse-get "")
 ;; (oddmuse-mode-initialize)
-;(setq  oddmuse-wikis    (append '(("TesteVia" "http://wikivia.domain.com.br/wikivia/index.php?title=P%C3%A1gina_principal&action=edit" utf-8)) oddmuse-wikis))
+;(defvar  oddmuse-wikis    (append '(("TesteVia" "http://wikivia.domain.com.br/wikivia/index.php?title=P%C3%A1gina_principal&action=edit" utf-8)) oddmuse-wikis))
 
 
-;; (eval-when-compile
-;;   (setq load-path (append '("~/.emacs.d/site-lisp/net/cvs-packages/pmwiki-mode") load-path)))
-
-;; (setq load-path (append '("~/.emacs.d/site-lisp/net/cvs-packages/pmwiki-mode/") load-path))
+;; (defvar load-path (append '("~/.emacs.d/site-lisp/net/cvs-packages/pmwiki-mode/") load-path))
 ;; (require 'pmwiki-mode)
 
-;; (setq pmwiki-main-wiki-base-uri "http://wikivia.domain.com.br/wikivia/")
-;; (setq pmwiki-main-homepage-uri
+;; (defvar pmwiki-main-wiki-base-uri "http://wikivia.domain.com.br/wikivia/")
+;; (defvar pmwiki-main-homepage-uri
 ;;       (concat pmwiki-main-wiki-base-uri "index.php/P%C3%A1gina_principal"))
 
 ;; ;;;;
@@ -1264,19 +1090,19 @@ the city quarter as well as the city.
 ;;    '("\\.wiki\\'" . wikipedia-mode))
 
 ;; flyspell
-(setq text-mode-hook (quote (#[nil "\300\301!\207" [flyspell-mode 1] 2] flyspell-buffer text-mode-hook-identify)))
+(defvar text-mode-hook (quote (#[nil "\300\301!\207" [flyspell-mode 1] 2] flyspell-buffer text-mode-hook-identify)))
 
 ;; (add-to-list 'auto-mode-alist '("wikivia\\.domain\\.com\\.br" . wikipedia-mode)) 
 ;; (require 'wikipedia)
 ;; (defun wikipedia-test-locally () (interactive) (url-retrieve "http://wikivia.domain.com.br/wikivia/" 'wikipedia-extract-article-text '("br" "brazil"))) 
 ;; ;;}}}
-;; (eval-when-compile (setq load-path (append '("~/.emacs.d/site-lisp/common") load-path))) (eval-after-load "buff-menu" '(require 'buff-menu+ "~/.emacs.d/site-lisp/common/buff-menu+"))
+;; (eval-when-compile (defvar load-path (append '("~/.emacs.d/site-lisp/common") load-path))) (eval-after-load "buff-menu" '(require 'buff-menu+ "~/.emacs.d/site-lisp/common/buff-menu+"))
 ;;}}} --[ NON-GNU-emacs ]
 ;;}}}
 ;;{{{ ---[ GAMES ]--------------------------------------------------------------
 
 ;; (eval-when-compile
-;;   (setq load-path (append '("~/.emacs.d/site-lisp/games") load-path)))
+;;   (defvar load-path (append '("~/.emacs.d/site-lisp/games") load-path)))
 ;; (require 'sudoku "~/.emacs.d/site-lisp/games/sudoku")
 
 ;; (autoload 'typing-of-emacs "typing" "The Typing Of Emacs, a game." t)
@@ -1287,7 +1113,7 @@ the city quarter as well as the city.
 ;; (autoload 'sokoban-mode "sokoban"
 ;;   "Play Sokoban in current buffer." t)
 
-;; (setq sokoban-levels-dir "~/.emacs.d/site-lisp/games/sokoban/sokoban-levels/")
+;; (defvar sokoban-levels-dir "~/.emacs.d/site-lisp/games/sokoban/sokoban-levels/")
 
 ; cell problem
 ;(require 'rlx "~/.emacs.d/site-lisp/games/rlx")
@@ -1318,17 +1144,17 @@ the city quarter as well as the city.
 
 ;;}}} [ TESTE ]
 ;; (eval-when-compile
-;;   (setq load-path (append '("~/.emacs.d/site-lisp/net/cvs-packages/chess"  ) load-path)))
-;; (setq load-path (append '("~/.emacs.d/site-lisp/net/cvs-packages/chess/") load-path))
+;;   (defvar load-path (append '("~/.emacs.d/site-lisp/net/cvs-packages/chess"  ) load-path)))
+;; (defvar load-path (append '("~/.emacs.d/site-lisp/net/cvs-packages/chess/") load-path))
 ;; (autoload 'chess "chess" "Play a game of chess" t)
-;; (setq chess-default-engine           'chess-gnuchess)
-;; (setq chess-display-highlight-legal  t)
-;; ;;(setq chess-message-language         'portuguese)
-;; (setq chess-full-name                "amcorreia")
-;; (setq chess-images-separate-frame    nil)
-;; (setq chess-images-default-size      21)
+;; (defvar chess-default-engine           'chess-gnuchess)
+;; (defvar chess-display-highlight-legal  t)
+;; ;;(defvar chess-message-language         'portuguese)
+;; (defvar chess-full-name                "amcorreia")
+;; (defvar chess-images-separate-frame    nil)
+;; (defvar chess-images-default-size      21)
 (require 'tramp)
-(setq tramp-persistency-file-name t)
+(defvar tramp-persistency-file-name t)
 (tramp-set-completion-function "ssh"
 			       '((tramp-parse-sconfig "/etc/ssh_config")
 				 (tramp-parse-sconfig "~/.ssh/config")))
