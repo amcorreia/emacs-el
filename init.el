@@ -73,15 +73,15 @@
 (setq column-number-mode            t)
 (setq line-number-mode              t)
 (setq display-time-day-and-date     t)
-(setq display-time-24hr-format      t)
-(setq battery-mode-line-format      " [%b%p%%,%d°C]")
+(defvar display-time-24hr-format    t)
+(defvar battery-mode-line-format    " [%b%p%%,%d°C]")
 (setq visible-bell                  t) ; no X esse barulho eh chato.
 (setq user-full-name                "Alessandro Madruga Correia")
 (setq user-mail-address             "amcorreia@domain.com.br")
 (setq user-login-name               "madruga")
-(setq bookmark-default-file         "~/.emacs.d/emacs.bmk") ; bookmarks file
-(setq backup-by-copying             t)
-(setq backup-directory-alist        '(("." . "~/.backups")))
+(defvar bookmark-default-file       "~/.emacs.d/tmp/emacs.bmk") ; bookmarks file
+(defvar backup-by-copying           t)
+(setq backup-directory-alist        '(("." . "~/.emacs.d/tmp/backups")))
 (setq Info-default-directory-list   (append
 				     '("~/usr/info/" "~/usr/share/info/")
 				     Info-default-directory-list))
@@ -349,6 +349,7 @@
 
 ;; If the *scratch* buffer is killed, recreate it automatically
 (save-excursion
+;(with-current-buffer
   (set-buffer (get-buffer-create "*scratch*"))
   (lisp-interaction-mode)
   (make-local-variable 'kill-buffer-query-functions)
@@ -453,7 +454,7 @@
 (defun my-c-mode-common-hook ()
   (setq c-basic-offset                   4)
   (setq c-echo-syntactic-information-p   t)
-  (setq c-report-syntactic-errors        t)
+  ;(setq c-report-syntactic-errors        t)
   (c-toggle-auto-newline                 t)
   (c-toggle-electric-state               t))
 
@@ -831,33 +832,33 @@ Outline: (prefix M-o)
        ;; ,. ->
        ((and (string-equal (buffer-substring (point) (- (point) 2)) ",.")
              (not (string-equal (buffer-substring (point) (- (point) 3)) "___")))
-        (progn (delete-backward-char 2) (insert-char ?- 1) (insert-char ?> 1)))
+        (progn (delete-char -2) (insert-char ?- 1) (insert-char ?> 1)))
        ;; ., =>
        ((and (string-equal (buffer-substring (point) (- (point) 2)) ".,")
              (not (string-equal (buffer-substring (point) (- (point) 3)) "___")))
-        (progn (delete-backward-char 2) (insert-char ?= 1) (insert-char ?> 1)))
+        (progn (delete-char -2) (insert-char ?= 1) (insert-char ?> 1)))
 
 ;;        ((string-equal (buffer-substring (point) (- (point) 3)) "->_")
 ;;         (progn (delete-backward-char 3) (insert-char ?_ 3)))
        ;; .
        ((and (string-equal (buffer-substring (point) (- (point) 2)) "..")
              (not (string-equal (buffer-substring (point) (- (point) 3)) "...")))
-        (progn (delete-backward-char 2) (insert-char ?[ 1) (insert-char ?] 1)
+        (progn (delete-char -2) (insert-char ?[ 1) (insert-char ?] 1)
                (backward-char 1)))
 
        ((and (> (point-max) (point))
              (string-equal (buffer-substring (+ (point) 1) (- (point) 2)) "[.]"))
-        (progn (forward-char 1) (delete-backward-char 3) (insert-char ?. 1) (insert-char ?. 1) ))
+        (progn (forward-char 1) (delete-char -3) (insert-char ?. 1) (insert-char ?. 1) ))
        ;; teste
        ;; .. []
        ((and (string-equal (buffer-substring (point) (- (point) 2)) ",,")
              (not (string-equal (buffer-substring (point) (- (point) 3)) ",,,")))
-        (progn (delete-backward-char 2) (insert-char ?{ 1) (insert-char ?} 1)
+        (progn (delete-char -2) (insert-char ?{ 1) (insert-char ?} 1)
                (backward-char 1)))
        ;; ,, {}
        ((and (> (point-max) (point))
              (string-equal (buffer-substring (+ (point) 1) (- (point) 2)) "{.}"))
-        (progn (forward-char 1) (delete-backward-char 3) (insert-char ?, 1) (insert-char ?, 1) ))
+        (progn (forward-char 1) (delete-char -3) (insert-char ?, 1) (insert-char ?, 1) ))
        )
     nil))
 
@@ -910,27 +911,27 @@ Outline: (prefix M-o)
 
 ;(setq diary-file                      "~/.emacs.d/diario")
 (setq calendar-week-start-day         0)
-(setq european-style-calendar         t)
-(setq mark-diary-entries-in-calendar  t)
-(setq mark-holidays-in-calendar       t)
-(setq appt-display-mode-line          nil) ; se tiver um appointment mostra no modline.
-(setq calendar-latitude               -29.16) ; caxias do sul - RS
-(setq calendar-longitude              -51.18) ; [ 1 1 west]
-(setq calendar-location-name          "SAM|BR|BR019|CAXIAS DO SUL|")
+(defvar european-style-calendar         t)
+(defvar mark-diary-entries-in-calendar  t)
+(defvar mark-holidays-in-calendar       t)
+(defvar appt-display-mode-line          nil) ; se tiver um appointment mostra no modline.
+(defvar calendar-latitude               -29.16) ; caxias do sul - RS
+(defvar calendar-longitude              -51.18) ; [ 1 1 west]
+(defvar calendar-location-name          "SAM|BR|BR019|CAXIAS DO SUL|")
 ;(setq calendar-date-display-form 
 
-(setq calendar-day-name-array
-      ["Domingo" "Segunda" "Terça" "Quarta" "Quinta" "Sexta" "Sábado"]
-      calendar-month-name-array
-      ["Janeiro"   "Fevereiro"  "Março"     "Abril"
-       "Maio"      "Junho"      "Julho"     "Agosto"
-       "Setembro"  "Outubro"    "Novembro"  "Dezembro"])
+(defvar calendar-day-name-array
+  ["Domingo" "Segunda" "Terça" "Quarta" "Quinta" "Sexta" "Sábado"]
+  calendar-month-name-array
+  ["Janeiro"   "Fevereiro"  "Março"     "Abril"
+   "Maio"      "Junho"      "Julho"     "Agosto"
+   "Setembro"  "Outubro"    "Novembro"  "Dezembro"])
 
 ;; remove some holidays
-(setq general-holidays nil)   ; get rid of too U.S.-centric holidays
-(setq hebrew-holidays nil)    ; get rid of religious holidays
-(setq islamic-holidays nil)   ; get rid of religious holidays
-(setq oriental-holidays nil)
+(defvar general-holidays nil)   ; get rid of too U.S.-centric holidays
+(defvar hebrew-holidays nil)    ; get rid of religious holidays
+(defvar islamic-holidays nil)   ; get rid of religious holidays
+(defvar oriental-holidays nil)
 
 (setq local-holidays
       '(
@@ -1137,79 +1138,6 @@ the city quarter as well as the city.
 		    nil))
      (add-to-list 'w3m-uri-replace-alist
 		  '("\\`gg:" w3m-search-uri-replace "Google"))))
-
-;;}}}
-;;{{{ --[ Jabber ] -----------
-
-;; (eval-when-compile
-;;   (setq load-path (append '("~/.emacs.d/site-lisp/net/cvs-packages/emacs-jabber/"
-;; 			    "~/.emacs.d/site-lisp/misc/") load-path)))
-
-;; ;(setq load-path (append '("~/.emacs.d/site-lisp/net/cvs-packages/emacs-jabber-0.7/") load-path))
-;; (setq load-path (append '("~/.emacs.d/site-lisp/net/cvs-packages/emacs-jabber/") load-path))
-;; ;(pop load-path)
-;(setq load-path (append '("~/.emacs.d/elisp/emacs-jabber/") load-path))
-
-(eval-when-compile
-  (setq load-path (append '("/usr/share/emacs/site-lisp/emacs-jabber/") load-path)))
-;(require 'jabber)
-
-;; (require 'autosmiley)
-
-(add-hook 'jabber-chat-mode-hook      'my-jabber-hook)
-;; (add-hook 'jabber-chat-mode-hook      'autosmiley-mode)
-(setq jabber-server              "domain.com.br")
-(setq jabber-account-list 
-      '(("amcorreia@domain.com.br/Emacs-Jabber")))
-;	 (:network-server . "domain.com.br"))))
-;; (setq jabber-default-priority    5)
-(setq jabber-nickname            "Alessandro")
-(setq jabber-chat-delayed-time-format "%Y-%m-%d %H:%M:%S")  ; def "%Y-%m-%d %H:%M"
-(setq jabber-chat-time-format    "%H:%M:%S")  ; def %H:b%M
-(setq jabber-history-enabled     t)
-(setq jabber-use-global-history  nil) ; nao cria um arquivo global de log
-(setq jabber-history-dir         "~/.emacs.d/config/jabber") ; cria um arquivo de log p cada roster
-;; ;(jabber-send-presence            "away" "idle for 10 minutes" 1)
-;; ; def. " %a %c %-25n %u %-8s  %S\n"
-(setq jabber-roster-line-format " %c %n %50u %s  %S\n")
-
-(defun my-jabber-hook nil
-  ;(setq ispell-dictionary "brasileiro")
-  (flyspell-mode)
-  (ispell-change-dictionary "brasileiro")
-  
-  (local-set-key "\C-ce" 'my-turn-on-flyspell-english)
-  (local-set-key "\C-cp" 'my-turn-on-flyspell-portuguese)
-
-  ;(global-set-key "\C-cjg" '(lambda() (interactive) (jabber-chat-with "user@domain.com.br")))
-
-  ; directly switch to latest roster buffer
-  (global-set-key "\C-cjj" '(lambda() (interactive) (jabber-activity-switch-to)))  ;(jabber-chat-with jabber-activity-jids)))
-
-  )
-  ;(local-set-key (kbd "?\\C-\\t") '(lambda() (interactive) (message "O"))))
-
-;; (add-to-list 'jabber-alert-message-hooks
-;;     	     (lambda (from buffer text proposed-alert)
-;;     	       (goto-address)))
-
-;;(add-hook 'jabber-post-connect-hook 'jabber-autoaway-start)
-
-(setq jabber-chat-header-line-format
-      '(" " (:eval (jabber-jid-displayname jabber-chatting-with))
-    	" " (:eval (jabber-jid-resource jabber-chatting-with)) "\t"
-    	(:eval (let ((buddy (jabber-jid-symbol jabber-chatting-with)))
-    		 (propertize
-    		  (or
-    		   (cdr (assoc (get buddy 'show) jabber-presence-strings))
-    		   (get buddy 'show))
-    		  'face
-    		  (or (cdr (assoc (get buddy 'show) jabber-presence-faces))
-    		      'jabber-roster-user-online))))
-    	"\t" (:eval (get (jabber-jid-symbol jabber-chatting-with) 'status))
-    	(:eval (unless (equal "" *jabber-current-show*)
-    		 (concat "\t You're " *jabber-current-show*
-    			 " (" *jabber-current-status* ")")))))
 
 ;;}}}
 
