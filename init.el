@@ -1214,13 +1214,19 @@ the city quarter as well as the city.
 
 ;;}}}
 
+;; see: https://gist.github.com/amcorreia/10340725
+(eval-when-compile
+  (load-file "/home/amcorreia/.emacs.d/calendar-google.el"))
+(load-file "/home/amcorreia/.emacs.d/calendar-google.el")
+(require 'private-google-calendar)
 
 (require 'calfw)
 ;(require 'calfw-howm)
 (require 'calfw-org)
 (require 'calfw-cal)
 (require 'calfw-ical)
-(cfw:open-ical-calendar "http://www.google.com/calendar/ical/.../basic.ics")
+(cfw:open-ical-calendar my-ical-private-google)
+
 ;; Month
 (setq calendar-month-name-array
   ["Janeiro" "Fevereiro" "Março"     "Abril"   "Maio"      "Junho"
