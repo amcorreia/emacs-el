@@ -91,3 +91,6 @@
 [submodule "site-lisp/moomin-el"]
 	path = site-lisp/moomin-el
 	url = git@github.com:tototoshi/moomin-el.git
+[submodule "site-lisp/cedet"]
+	path = site-lisp/cedet
+	url = git@github.com:emacsmirror/cedet.git

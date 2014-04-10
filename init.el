@@ -40,7 +40,7 @@
 ;;  |- other
 
 ;; ---[ GLOBALS ]---
-
+(load-file "~/.emacs.d/emacs-el/site-lisp/cedet/cedet-devel-load.el")
 ;; dummy term don't fontify correct comment
 (unless (eq window-system 'x) ; tty
   (setq font-lock-comment-face '((:foreground "red" :slant normal :weight extra-light))))
@@ -629,9 +629,9 @@ Outline: (prefix M-o)
   (interactive)
   (shell-command (concat "/usr/bin/php " (buffer-file-name))))
 
-(eval-when-compile
-  (setq load-path (append '("~/.emacs.d/emacs-el/site-lisp/php-mode/") load-path)))
-(setq load-path (append '("~/.emacs.d/emacs-el/site-lisp/php-mode/") load-path))
+;(eval-when-compile
+;  (setq load-path (append '("~/.emacs.d/emacs-el/site-lisp/php-mode/") load-path)))
+;(setq load-path (append '("~/.emacs.d/emacs-el/site-lisp/php-mode/") load-path))
 (require 'php-mode)
 
 (setq auto-mode-alist (append '(("\\.php\\'" . php-mode))  auto-mode-alist))
@@ -639,6 +639,8 @@ Outline: (prefix M-o)
 (add-hook 'php-mode-hook
 	  '(lambda ()
              (setq php-documentation-url
+                   "http://gw/docs/programacao/php/php-5.4-PT/")
+             (setq php-manual-url
                    "http://gw/docs/programacao/php/php-5.4-PT/")
              (setq php-documentation-url-local t)
 	     (define-key php-mode-map "\C-cact"       'tempo-complete-tag)
@@ -880,6 +882,8 @@ Outline: (prefix M-o)
 (require 'magit)
 
 
+;(require 'ecb)
+
 
 ;;}}} --[ Programming ]
 ;;{{{ ---[ GNU-emacs ]----------------------------------------------------------
@@ -1110,7 +1114,7 @@ the city quarter as well as the city.
 (require 'w3m-load)
 (autoload 'w3m "w3m" "Navegador" t)
 (autoload 'w3m-session "w3m-session")
-(setq w3m-home-page            "http://www.google.com")
+(setq w3m-home-page    "http://www.google.com")
 (setq w3m-use-cookies t)
 (setq w3m-default-display-inline-images t)
 (setq w3m-session-file "~/.emacs.d/w3m-sessions")
@@ -1121,24 +1125,18 @@ the city quarter as well as the city.
 ; (add-hook 'w3m-mode-hook 'w3m-add-keys)
 
 
-;(setq w3m-session-duplicate-tabs 'ask) 
-;; (setq browse-url-browser-function 'w3m-browse-url)
-;; (global-set-key "\C-xm" 'browse-url-at-point)
+(setq w3m-session-duplicate-tabs 'ask)
+(setq browse-url-browser-function 'w3m-browse-url)
+(global-set-key "\C-xm" 'browse-url-at-point)
 
-;(eval-after-load "w3m-search"
-;  '(add-to-list 'w3m-search-engine-alist
-;		'("Google"
-;		  "http://www.google.com/search?q=%s"
-;		  nil)))
-
-;; (eval-after-load "w3m-search"
-;;   '(progn
-;;      (add-to-list 'w3m-search-engine-alist
-;; 		  '("Google"
-;; 		    "http://www.google.com/search?q=%s"
-;; 		    nil))
-;;      (add-to-list 'w3m-uri-replace-alist
-;; 		  '("\\`gg:" w3m-search-uri-replace "Google"))))
+(eval-after-load "w3m-search"
+  '(progn
+     (add-to-list 'w3m-search-engine-alist
+		  '("Google"
+		    "http://www.google.com/search?q=%s"
+		    nil))
+     (add-to-list 'w3m-uri-replace-alist
+		  '("\\`gg:" w3m-search-uri-replace "Google"))))
 
 ;;}}}
 ;;{{{ --[ Jabber ] -----------
