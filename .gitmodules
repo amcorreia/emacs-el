@@ -70,3 +70,24 @@
 [submodule "site-lisp/ecb"]
 	path = site-lisp/ecb
 	url = git@github.com:emacsmirror/ecb.git
+[submodule "site-lisp/org"]
+	path = site-lisp/org
+	url = git@github.com:emacsmirror/org.git
+[submodule "site-lisp/wiki-remote"]
+	path = site-lisp/wiki-remote
+	url = git@github.com:emacsmirror/wiki-remote.git
+[submodule "site-lisp/screen-lines"]
+	path = site-lisp/screen-lines
+	url = git@github.com:emacsmirror/screen-lines.git
+[submodule "site-lisp/moinmoin-mode"]
+	path = site-lisp/moinmoin-mode
+	url = git@github.com:tototoshi/moinmoin-mode.git
+[submodule "site-lisp/emacs-request"]
+	path = site-lisp/emacs-request
+	url = git@github.com:tkf/emacs-request.git
+[submodule "site-lisp/helm"]
+	path = site-lisp/helm
+	url = git@github.com:emacs-helm/helm.git
+[submodule "site-lisp/moomin-el"]
+	path = site-lisp/moomin-el
+	url = git@github.com:tototoshi/moomin-el.git

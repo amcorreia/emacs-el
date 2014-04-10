@@ -1106,7 +1106,8 @@ the city quarter as well as the city.
 ;;}}}
 ;;{{{ --[ w3m ]---------------
 
-;(require 'w3m)
+
+(require 'w3m-load)
 (autoload 'w3m "w3m" "Navegador" t)
 (autoload 'w3m-session "w3m-session")
 (setq w3m-home-page            "http://www.google.com")
@@ -1295,26 +1296,28 @@ the city quarter as well as the city.
 ;;     (switch-to-buffer bf t)))
 
 ;;}}}
-;;{{{ --[ emacs-wiki ]-----------
-;; (eval-when-compile
-;;   (setq load-path (append '("~/.emacs.d/site-lisp/net/cvs-packages/emacs-wiki-2.71/") load-path)))
+;(require 'screen-lines)
+;(require 'moinmoin-mode)
+;(require 'moomin)
+(setq moomin-wiki-url-base "http://wiki.zarathustra.com.br/MyWiki")
 
-;; (setq load-path (append '("~/.emacs.d/site-lisp/net/cvs-packages/emacs-wiki-2.71/") load-path))
-;; (require 'emacs-wiki)
+;;; ;; Assign keybind to 'helm-moomin and 'moomin-save-current-buffer as you like
+(global-set-key (kbd "C-x w") 'helm-moomin)
+(add-hook 'moinmoin-mode-hook
+          (lambda ()
+            (define-key moinmoin-mode-map (kbd "C-c C-c") 'moomin-save-current-buffer)))
 
 ;; ;;; WIKI
-;; (eval-when-compile
-;;   (setq load-path (append '("~/.emacs.d/site-lisp/common/") load-path)))
-
-;; (setq load-path (append '("~/.emacs.d/site-lisp/common") load-path))
-
 ;; (require 'oddmuse)
 ;; (setq oddmuse-directory "~/.emacs.d/config/oddmuse")
 
-;;(setq oddmuse-wikis "http://wikivia.domain.com.br/cgi-bin/test"
-;;      "http://wikivia.domain.com.br/wikivia/index.php?title=P%C3%A1gina_principal&action=edit"
+;; (setq oddmuse-wikis (append '(("Zarathustra"
+;;                                "http://wiki.zarathustra.com.br/MyWiki/FrontPage?action=edit&editor=text" utf-8)) oddmuse-wikis))
+;; (setq oddmuse-wikis  '("Zarathustra"
+;;                                "http://wiki.zarathustra.com.br/MyWiki/FrontPage" utf-8))
+;; (setq oddmuse-get "")
+;; (oddmuse-mode-initialize)
 ;(setq  oddmuse-wikis    (append '(("TesteVia" "http://wikivia.domain.com.br/wikivia/index.php?title=P%C3%A1gina_principal&action=edit" utf-8)) oddmuse-wikis))
-;; (setq  oddmuse-wikis    (append '(("TesteVia2" "http://wikivia.domain.com.br/wikivia/index.php?title=T&action=edit" utf-8)) oddmuse-wikis))
 
 
 ;; (eval-when-compile
