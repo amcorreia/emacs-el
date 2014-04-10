@@ -1298,7 +1298,7 @@ the city quarter as well as the city.
 ;;}}}
 ;(require 'screen-lines)
 ;(require 'moinmoin-mode)
-;(require 'moomin)
+(require 'moomin)
 (setq moomin-wiki-url-base "http://wiki.zarathustra.com.br/MyWiki")
 
 ;;; ;; Assign keybind to 'helm-moomin and 'moomin-save-current-buffer as you like
