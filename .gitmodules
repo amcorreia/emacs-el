@@ -64,3 +64,9 @@
 [submodule "site-lisp/diffview"]
 	path = site-lisp/diffview
 	url = git@github.com:emacsmirror/diffview.git
+[submodule "site-lisp/w3m"]
+	path = site-lisp/w3m
+	url = git@github.com:emacsmirror/w3m.git
+[submodule "site-lisp/ecb"]
+	path = site-lisp/ecb
+	url = git@github.com:emacsmirror/ecb.git

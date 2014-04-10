@@ -90,13 +90,11 @@
 (add-to-list 'load-path "~/.emacs.d/emacs-el/elisp/")
 
 (eval-when-compile
-  (setq load-path
-        (let ((default-directory "~/.emacs.d/emacs-el/site-lisp"))
-          (normal-top-level-add-subdirs-to-load-path))))
-(add-to-list 'load-path
-             (let ((default-directory "~/.emacs.d/emacs-el/site-lisp"))
-               (normal-top-level-add-subdirs-to-load-path)))
-;(setq load-path (append '("~/.emacs.d/elisp/") load-path))
+  (let ((default-directory "~/.emacs.d/emacs-el/site-lisp"))
+          (normal-top-level-add-subdirs-to-load-path)))
+
+(let ((default-directory "~/.emacs.d/emacs-el/site-lisp"))
+               (normal-top-level-add-subdirs-to-load-path))
 
 (setq-default indent-tabs-mode nil)  ; set spaces instead tab to indent
 
@@ -258,7 +256,7 @@
 ;;{{{ funcoes de backup
 ;; make backup files in ~/.backups/ rather than scattered around all
 ;; over the filesystem.
-;(require 'dired)
+(require 'dired)
 (defun make-backup-file-name (file-name)
   "Create the non-numeric backup file name for `file-name'."
   (if (file-exists-p "~/.backups")
@@ -875,7 +873,7 @@ Outline: (prefix M-o)
 ;;}}}
 ;; magit
 (add-to-list 'load-path "~/.emacs.d/emacs-el/site-lisp/git-modes")
-(add-to-list 'load-path "~/.emacs.d/emacs-el/site-lisp/magit")
+;(add-to-list 'load-path "~/.emacs.d/emacs-el/site-lisp/magit")
 (eval-after-load 'info
   '(progn (info-initialize)
           (add-to-list 'Info-directory-list "~/.emacs.d/emacs-el/site-lisp/magit")))
@@ -1258,6 +1256,7 @@ the city quarter as well as the city.
 
 (require 'rainbow-delimiters)
 (require 'mode-icons)
+(mode-icons-mode)
 
 ;;{{{ --[ worklog ]-----------
 
