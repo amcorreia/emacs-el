@@ -34,3 +34,33 @@
 [submodule "site-lisp/git-modes"]
 	path = site-lisp/git-modes
 	url = git@github.com:magit/git-modes.git
+[submodule "site-lisp/calfw"]
+	path = site-lisp/calfw
+	url = git@github.com:emacsmirror/calfw.git
+[submodule "site-lisp/rainbow-delimiters"]
+	path = site-lisp/rainbow-delimiters
+	url = git@github.com:emacsmirror/rainbow-delimiters.git
+[submodule "site-lisp/nginx-mode"]
+	path = site-lisp/nginx-mode
+	url = git@github.com:emacsmirror/nginx-mode.git
+[submodule "site-lisp/jedi"]
+	path = site-lisp/jedi
+	url = git@github.com:emacsmirror/jedi.git
+[submodule "site-lisp/use-package"]
+	path = site-lisp/use-package
+	url = git@github.com:emacsmirror/use-package.git
+[submodule "site-lisp/html-fold"]
+	path = site-lisp/html-fold
+	url = git@github.com:emacsmirror/html-fold.git
+[submodule "site-lisp/google-translate"]
+	path = site-lisp/google-translate
+	url = git@github.com:emacsmirror/google-translate.git
+[submodule "site-lisp/memory-usage"]
+	path = site-lisp/memory-usage
+	url = git@github.com:emacsmirror/memory-usage.git
+[submodule "site-lisp/mode-icons"]
+	path = site-lisp/mode-icons
+	url = git@github.com:emacsmirror/mode-icons.git
+[submodule "site-lisp/diffview"]
+	path = site-lisp/diffview
+	url = git@github.com:emacsmirror/diffview.git

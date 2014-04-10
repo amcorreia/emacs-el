@@ -74,7 +74,7 @@
 (setq line-number-mode              t)
 (setq display-time-day-and-date     t)
 (setq display-time-24hr-format      t)
-(setq battery-mode-line-format      " [%b%p%%,%d∞C]")
+(setq battery-mode-line-format      " [%b%p%%,%d¬∞C]")
 (setq visible-bell                  t) ; no X esse barulho eh chato.
 (setq user-full-name                "Alessandro Madruga Correia")
 (setq user-mail-address             "amcorreia@domain.com.br")
@@ -88,6 +88,14 @@
 (eval-when-compile
   (setq load-path (append '("~/.emacs.d/emacs-el/elisp/") load-path)))
 (add-to-list 'load-path "~/.emacs.d/emacs-el/elisp/")
+
+(eval-when-compile
+  (setq load-path
+        (let ((default-directory "~/.emacs.d/emacs-el/site-lisp"))
+          (normal-top-level-add-subdirs-to-load-path))))
+(add-to-list 'load-path
+             (let ((default-directory "~/.emacs.d/emacs-el/site-lisp"))
+               (normal-top-level-add-subdirs-to-load-path)))
 ;(setq load-path (append '("~/.emacs.d/elisp/") load-path))
 
 (setq-default indent-tabs-mode nil)  ; set spaces instead tab to indent
@@ -214,7 +222,7 @@
                         (search-forward "Data")
                         ;(next-line 2)
 			(forward-line 2)
-                        (message "SituaÁ„o=> %s" (buffer-substring (progn (beginning-of-line) (point)) (progn (end-of-line) (point)) )))
+                        (message "Situa√ß√£o=> %s" (buffer-substring (progn (beginning-of-line) (point)) (progn (end-of-line) (point)) )))
       (switch-to-buffer-other-frame buf))))
 
 (defun my-correios-obj-lista nil ""
@@ -250,7 +258,7 @@
 ;;{{{ funcoes de backup
 ;; make backup files in ~/.backups/ rather than scattered around all
 ;; over the filesystem.
-(require 'dired)
+;(require 'dired)
 (defun make-backup-file-name (file-name)
   "Create the non-numeric backup file name for `file-name'."
   (if (file-exists-p "~/.backups")
@@ -460,7 +468,7 @@
                           (awk-mode  . "awk")
                           (other     . "bsd")))
   (c-set-style "my-obsd")
- (define-key c-mode-map [f12]        'compile)
+  (define-key c-mode-map [f12]        'compile)
   (define-key c-mode-map "\C-ch"      'man-follow)
   (define-key c-mode-map "\C-m"       'c-context-line-break)
   (define-key c-mode-map [?\C-\M-a]   'c-beginning-of-defun)
@@ -910,9 +918,9 @@ Outline: (prefix M-o)
 ;(setq calendar-date-display-form 
 
 (setq calendar-day-name-array
-      ["Domingo" "Segunda" "TerÁa" "Quarta" "Quinta" "Sexta" "S·bado"]
+      ["Domingo" "Segunda" "Ter√ßa" "Quarta" "Quinta" "Sexta" "S√°bado"]
       calendar-month-name-array
-      ["Janeiro"   "Fevereiro"  "MarÁo"     "Abril"
+      ["Janeiro"   "Fevereiro"  "Mar√ßo"     "Abril"
        "Maio"      "Junho"      "Julho"     "Agosto"
        "Setembro"  "Outubro"    "Novembro"  "Dezembro"])
 
@@ -928,14 +936,14 @@ Outline: (prefix M-o)
         (holiday-fixed  4 21 "Tiradentes")
         (holiday-fixed  6 12 "Dia dos Namorados")
         (holiday-fixed  6 15 "Corpus Christi")
-        (holiday-fixed  9 7  "ProclamaÁ„o da IndependÍncia")
-        (holiday-fixed  9 20 "RevoluÁ„o Farroupilha")
-	(holiday-fixed 10 12 "Dia das crianÁas")
+        (holiday-fixed  9 7  "Proclama√ß√£o da Independ√™ncia")
+        (holiday-fixed  9 20 "Revolu√ß√£o Farroupilha")
+	(holiday-fixed 10 12 "Dia das crian√ßas")
         (holiday-fixed 10 23 "Vacaria NAO TENHO CERTEZA")
         (holiday-fixed 11 1  "todos os Santos")
         (holiday-fixed 11 2  "Finados")
-        (holiday-fixed 11 15 "ProclamaÁ„o da rep˙blica")
-        (holiday-fixed 12 8  "Imaculada conceiÁ„o")
+        (holiday-fixed 11 15 "Proclama√ß√£o da rep√∫blica")
+        (holiday-fixed 12 8  "Imaculada concei√ß√£o")
         (holiday-fixed 12 21 "VERAO")
         (holiday-fixed 12 25 "Natal")
 
@@ -980,7 +988,7 @@ Outline: (prefix M-o)
   (setq ispell-sort-corrections t)
   
   (setq ispell-dictionary-alist
-	(cons '("brasileiro" "[A-Z¡…Õ—”⁄‹a-z·ÈÌÒÛ˙¸]" "[^A-Z¡…Õ—”⁄‹a-z·ÈÌÒÛ˙¸]" "[---]" nil
+	(cons '("brasileiro" "[A-Z√Å√â√ç√ë√ì√ö√úa-z√°√©√≠√±√≥√∫√º]" "[^A-Z√Å√â√ç√ë√ì√ö√úa-z√°√©√≠√±√≥√∫√º]" "[---]" nil
 		nil "~tex" iso-8859-1)  ispell-dictionary-alist))
   
   (flyspell-mode 1)
@@ -1207,6 +1215,50 @@ the city quarter as well as the city.
     			 " (" *jabber-current-status* ")")))))
 
 ;;}}}
+
+
+(require 'calfw)
+;(require 'calfw-howm)
+(require 'calfw-org)
+(require 'calfw-cal)
+(require 'calfw-ical)
+(cfw:open-ical-calendar "http://www.google.com/calendar/ical/.../basic.ics")
+;; Month
+(setq calendar-month-name-array
+  ["Janeiro" "Fevereiro" "Mar√ßo"     "Abril"   "Maio"      "Junho"
+   "Julho"    "Agosto"   "Setembro" "Outubro" "Novembro" "Dezembro"])
+
+;; Week days
+(setq calendar-day-name-array
+      ["Domingo" "Segunda" "Ter√ßa" "Quarta" "Quinta" "Sexta" "S√°bado"])
+
+;; First day of the week
+(setq calendar-week-start-day 1) ; 0:Sunday, 1:Monday
+
+ ;; Another unicode chars
+(setq cfw:fchar-junction ?‚ï¨
+      cfw:fchar-vertical-line ?‚ïë
+      cfw:fchar-horizontal-line ?‚ïê
+      cfw:fchar-left-junction ?‚ï†
+      cfw:fchar-right-junction ?‚ï£
+      cfw:fchar-top-junction ?‚ï¶
+      cfw:fchar-top-left-corner ?‚ïî
+      cfw:fchar-top-right-corner ?‚ïó)
+;; (defun my-open-calendar ()
+;;   (interactive)
+;;   (cfw:open-calendar-buffer
+;;    :contents-sources
+;;    (list
+;;     (cfw:org-create-source "Green")  ; orgmode source
+;;    ; (cfw:howm-create-source "Blue")  ; howm source
+;;     (cfw:cal-create-source "Orange") ; diary source
+;;     ;(cfw:ical-create-source "Moon" "~/moon.ics" "Gray")  ; ICS source1
+;;     ;(cfw:ical-create-source "gcal" "https://www.google.com/calendar/ical/.../basic.ics" "IndianRed") ; google calendar ICS
+;;    )))
+
+(require 'rainbow-delimiters)
+(require 'mode-icons)
+
 ;;{{{ --[ worklog ]-----------
 
 ;; (eval-when-compile
