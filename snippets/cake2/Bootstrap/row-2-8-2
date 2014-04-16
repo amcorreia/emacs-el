@@ -1,4 +1,4 @@
-#name : <div class=row>
+#name : <div class=row 2-8-2>
 # --
 <div class="row clearfix">
   <div class="col-md-2 column"> $0 </div>
