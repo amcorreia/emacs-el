@@ -1,0 +1,9 @@
+#name : <div class=btn-group>
+# --
+<div class="btn-group btn-group-sm">
+  <button class="btn btn-default" type="button"><em class="glyphicon glyphicon-align-left"></em> Left</button>
+  <button class="btn btn-default" type="button"><em class="glyphicon glyphicon-align-center"></em> Center</button> 
+  <button class="btn btn-default" type="button"><em class="glyphicon glyphicon-align-right"></em> Right</button> 
+  <button class="btn btn-default" type="button"><em class="glyphicon glyphicon-align-justify"></em> Justify</button>
+</div>
+

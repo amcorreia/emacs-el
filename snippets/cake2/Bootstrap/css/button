@@ -1,0 +1,3 @@
+#name : <button ...>
+# --
+<button type="button" class="btn btn-primary btn-sm">{$1:Default}</button>

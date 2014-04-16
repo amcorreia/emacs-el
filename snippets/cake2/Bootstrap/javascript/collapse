@@ -1,0 +1,23 @@
+#name : <div class="panel-group">
+# --
+<div class="panel-group" id="panel-259780">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <a class="panel-title" data-toggle="collapse" data-parent="#panel-259780" href="#panel-element-618134">Collapsible Group Item #1</a>
+    </div>
+    <div id="panel-element-618134" class="panel-collapse collapse in">
+      <div class="panel-body"> 
+        Anim pariatur cliche... 
+      </div> <!-- panel-body -->
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <a class="panel-title" data-toggle="collapse" data-parent="#panel-259780" href="#panel-element-890265">Collapsible Group Item #2</a>
+    </div>
+    <div id="panel-element-890265" class="panel-collapse collapse">
+      <div class="panel-body"> Anim pariatur cliche...  </div>
+    </div>
+  </div> <!-- panel panel-default -->
+</div>
+

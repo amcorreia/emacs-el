@@ -1,0 +1,5 @@
+#name : Text
+# --
+<h2> {$1:Header} </h2>
+<p> {$2:Description} </p>
+<p> <a class="btn" href="#">View details »</a> </p>

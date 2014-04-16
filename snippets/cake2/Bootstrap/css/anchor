@@ -1,0 +1,3 @@
+#name : <a href ...>
+# --
+<a href="{$1:#}" class="btn btn-primary btn-sm" type="button">{$2:Button}</a>

@@ -1,0 +1,4 @@
+#name : <span class=label>
+# --
+<span class="label label-primary">{$1:Label}</span>
+

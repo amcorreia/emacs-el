@@ -1,0 +1,8 @@
+#name : <blockquote>
+# --
+<blockquote>
+  <p> {$1:SomeText} </p> 
+  <small> 
+    Someone famous <cite>Source Title</cite>
+  </small>
+</blockquote>

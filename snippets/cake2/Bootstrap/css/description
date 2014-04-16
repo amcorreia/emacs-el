@@ -1,0 +1,7 @@
+#name : <dl ...> Description
+# --
+<!-- horizontal/vertical -->
+<dl class="dl-horizontal">
+  <dt> {$1:HeadItem1} </dt> <dd> {$2:DescItem1} </dd>
+  <dt> {$3:HeadItem2} </dt> <dd> {$3:DescItem2} </dd>
+</dl>
