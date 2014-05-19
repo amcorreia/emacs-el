@@ -621,7 +621,9 @@ Outline: (prefix M-o)
 ;;; python
 ;(require 'auto-pep8)
 ;(add-hook 'python-mode-hook (lambda () (auto-pep8-mode 1)))
-
+(require 'flycheck)
+(require 'pyvenv)
+(add-hook 'after-init-hook #'global-flycheck-mode)
 
 ;;{{{ --[ PHP-mode ]----------
 (defun php-lint ()
