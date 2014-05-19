@@ -124,3 +124,6 @@
 [submodule "site-lisp/f"]
 	path = site-lisp/f
 	url = git@github.com:rejeep/f.el.git
+[submodule "site-lisp/pyvenv"]
+	path = site-lisp/pyvenv
+	url = git@github.com:jorgenschaefer/pyvenv.git
