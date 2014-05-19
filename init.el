@@ -65,13 +65,13 @@
 
 ;; ---[ globals ]---
 
-(defvar inhibit-startup-message       t)   ; don't show statup message
+(setq   inhibit-startup-message       t)   ; don't show statup message
 (defvar kill-read-only-ok             t)   ; show message when try kill read-only text
 (defvar font-lock-maximum-decoration  t)   ; maximum possible fontification.
 (setq   scroll-step                   1)   ; don't make pager
 (defvar scroll-conservatively         5)
-(defvar column-number-mode            t)
-(defvar line-number-mode              t)
+(setq column-number-mode              t)
+(setq line-number-mode                t)
 (defvar display-time-day-and-date     t)
 (defvar display-time-24hr-format    t)
 (defvar battery-mode-line-format    " [%b%p%%,%d°C]")
@@ -349,7 +349,6 @@
 
 ;; If the *scratch* buffer is killed, recreate it automatically
 (save-excursion
-;(with-current-buffer
   (set-buffer (get-buffer-create "*scratch*"))
   (lisp-interaction-mode)
   (make-local-variable 'kill-buffer-query-functions)
@@ -619,6 +618,11 @@ Outline: (prefix M-o)
 
 ;;}}}
 
+;;; python
+;(require 'auto-pep8)
+;(add-hook 'python-mode-hook (lambda () (auto-pep8-mode 1)))
+
+
 ;;{{{ --[ PHP-mode ]----------
 (defun php-lint ()
   "Performs lint-check on the current buffer"
@@ -681,7 +685,7 @@ Outline: (prefix M-o)
 
 (require 'yasnippet)
 
-(defvar yas-snippet-dirs
+(setq yas-snippet-dirs
       '("~/.emacs.d/emacs-el/snippets"
         "~/.emacs.d/emacs-el/site-lisp/emacs-cake2/snippets/"
         "~/.emacs.d/emacs-el/site-lisp/yasnippet/yasmate/snippets"
@@ -694,7 +698,7 @@ Outline: (prefix M-o)
 (define-key yas-minor-mode-map (kbd "C-<tab>") 'yas-expand)
 
 (require 'php-auto-yasnippets)
-(defvar php-auto-yasnippet-php-program "~/.emacs.d/emacs-el/site-lisp/php-auto-yasnippets/Create-PHP-YASnippet.php")
+(setq php-auto-yasnippet-php-program "~/.emacs.d/emacs-el/site-lisp/php-auto-yasnippets/Create-PHP-YASnippet.php")
 
 (require 'popup)
 (require 'auto-complete-config)
@@ -836,9 +840,9 @@ Outline: (prefix M-o)
 ;; magit
 ;(add-to-list 'load-path "~/.emacs.d/emacs-el/site-lisp/git-modes")
 ;(add-to-list 'load-path "~/.emacs.d/emacs-el/site-lisp/magit")
-(eval-after-load 'info
-  '(progn (info-initialize)
-          (add-to-list 'Info-directory-list "~/.emacs.d/emacs-el/site-lisp/magit")))
+;(eval-after-load 'info
+;  '(progn (info-initialize)
+;          (add-to-list 'Info-directory-list "~/.emacs.d/emacs-el/site-lisp/magit")))
 (require 'magit)
 
 ;(require 'ecb)
@@ -973,6 +977,7 @@ Outline: (prefix M-o)
 
 ;;{{{ --[ w3m ]---------------
 (require 'w3m-load)
+(require 'w3m)
 (autoload 'w3m "w3m" "Navegador" t)
 (autoload 'w3m-session "w3m-session")
 (defvar w3m-home-page    "http://www.google.com")
@@ -1051,6 +1056,8 @@ Outline: (prefix M-o)
 (require 'mode-icons)
 (mode-icons-mode)
 
+(require 'gist)
+(require 'grc)
 ;(require 'screen-lines)
 ;(require 'moinmoin-mode)
 (require 'moomin)
