@@ -106,3 +106,9 @@
 [submodule "site-lisp/gist"]
 	path = site-lisp/gist
 	url = git@github.com:defunkt/gist.el.git
+[submodule "site-lisp/auto-pep8"]
+	path = site-lisp/auto-pep8
+	url = https://github.com/emacsmirror/auto-pep8
+[submodule "site-lisp/python-pep8"]
+	path = site-lisp/python-pep8
+	url = git@github.com:emacsmirror/python-pep8.git
