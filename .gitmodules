@@ -112,3 +112,15 @@
 [submodule "site-lisp/python-pep8"]
 	path = site-lisp/python-pep8
 	url = git@github.com:emacsmirror/python-pep8.git
+[submodule "site-lisp/flycheck"]
+	path = site-lisp/flycheck
+	url = git@github.com:flycheck/flycheck.git
+[submodule "site-lisp/s"]
+	path = site-lisp/s
+	url = git@github.com:magnars/s.el.git
+[submodule "site-lisp/dash"]
+	path = site-lisp/dash
+	url = git@github.com:magnars/dash.el.git
+[submodule "site-lisp/f"]
+	path = site-lisp/f
+	url = git@github.com:rejeep/f.el.git
