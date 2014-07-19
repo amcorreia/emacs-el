@@ -40,7 +40,7 @@
 ;;  |- other
 
 ;; ---[ GLOBALS ]---
-(load-file "~/.emacs.d/emacs-el/site-lisp/cedet/cedet-devel-load.el")
+;;(load-file "~/.emacs.d/emacs-el/site-lisp/cedet/cedet-devel-load.el")
 ;; dummy term don't fontify correct comment
 (unless (eq window-system 'x) ; tty
   (defvar font-lock-comment-face '((:foreground "red" :slant normal :weight extra-light))))
@@ -61,6 +61,8 @@
   ; barra com os botoes salvar, novo arquivo etc...
   (tool-bar-mode        -1)
   (set-scroll-bar-mode  nil)
+  ; background transparent
+  (set-frame-parameter (selected-frame) 'alpha '(90 50))
   )
 
 ;; ---[ globals ]---
@@ -621,8 +623,10 @@ Outline: (prefix M-o)
 ;;; python
 ;(require 'auto-pep8)
 ;(add-hook 'python-mode-hook (lambda () (auto-pep8-mode 1)))
+(require 'pony-mode)
 (require 'flycheck)
 (require 'pyvenv)
+
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
 ;;{{{ --[ PHP-mode ]----------
@@ -702,7 +706,7 @@ Outline: (prefix M-o)
 (require 'php-auto-yasnippets)
 (setq php-auto-yasnippet-php-program "~/.emacs.d/emacs-el/site-lisp/php-auto-yasnippets/Create-PHP-YASnippet.php")
 
-(require 'popup)
+;(require 'popup)
 (require 'auto-complete-config)
 (ac-config-default)
 
@@ -829,6 +833,10 @@ Outline: (prefix M-o)
 
 (add-hook 'after-change-functions 'my-editing-function)
 
+
+;; Javascript
+(require 'jquery-doc)
+(add-hook 'js2-mode-hook 'jquery-doc-setup)
 
 ;;; mode-compile
 (autoload 'mode-compile "mode-compile"
@@ -978,7 +986,7 @@ Outline: (prefix M-o)
 ;;}}}
 
 ;;{{{ --[ w3m ]---------------
-(require 'w3m-load)
+;(require 'w3m-load)
 (require 'w3m)
 (autoload 'w3m "w3m" "Navegador" t)
 (autoload 'w3m-session "w3m-session")
@@ -1009,17 +1017,17 @@ Outline: (prefix M-o)
 ;;}}}
 
 ;; see: https://gist.github.com/amcorreia/10340725
-(eval-when-compile
-  (load-file "/home/amcorreia/.emacs.d/calendar-google.el"))
-(load-file "/home/amcorreia/.emacs.d/calendar-google.el")
-(require 'private-google-calendar)
+;(eval-when-compile
+;  (load-file "/home/amcorreia/.emacs.d/calendar-google.el"))
+;(load-file "/home/amcorreia/.emacs.d/calendar-google.el")
+;(require 'private-google-calendar)
 
 (require 'calfw)
 ;(require 'calfw-howm)
 (require 'calfw-org)
 (require 'calfw-cal)
 (require 'calfw-ical)
-(cfw:open-ical-calendar my-ical-private-google)
+;(cfw:open-ical-calendar my-ical-private-google)
 
 ;; Month
 (defvar calendar-month-name-array
@@ -1059,7 +1067,7 @@ Outline: (prefix M-o)
 (mode-icons-mode)
 
 (require 'gist)
-(require 'grc)
+;(require 'grc)
 ;(require 'screen-lines)
 ;(require 'moinmoin-mode)
 (require 'moomin)
