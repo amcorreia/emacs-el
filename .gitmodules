@@ -127,3 +127,9 @@
 [submodule "site-lisp/pyvenv"]
 	path = site-lisp/pyvenv
 	url = git@github.com:jorgenschaefer/pyvenv.git
+[submodule "site-lisp/jquery-doc"]
+	path = site-lisp/jquery-doc
+	url = git@github.com:ananthakumaran/jquery-doc.el.git
+[submodule "site-lisp/pony-mode"]
+	path = site-lisp/pony-mode
+	url = git@github.com:davidmiller/pony-mode.git
